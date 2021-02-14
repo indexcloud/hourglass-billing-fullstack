@@ -1,14 +1,16 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import axios from "axios";
 
 function App() {
 	const [data, setData] = React.useState(null);
 
 	React.useEffect(() => {
-		fetch("/api")
-			.then(res => res.json())
-			.then(data => setData(data.message));
+		axios.get("/api").then(res => {
+			console.log(res);
+			return setData(res.data.message);
+		});
 	}, []);
 
 	return (
