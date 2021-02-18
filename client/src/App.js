@@ -1,26 +1,36 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import axios from "axios";
 
-function App() {
-	const [data, setData] = React.useState(null);
+import {Switch, Route, Link} from "react-router-dom";
+import Layout from "./hoc/Layout/Layout";
+import Auth from "./containers/Auth/Auth";
+import Matters from "./containers/Matters/Matters";
+import Billings from "./containers/Billings/Billings";
+import Reports from "./containers/Reports/Reports";
+import Settings from "./containers/Settings/Settings";
 
-	React.useEffect(() => {
-		axios.get("/api").then(res => {
-			console.log(res);
-			return setData(res.data.message);
-		});
-	}, []);
+class App extends React.Component {
+	state = {
+		data: null,
+		showSideDrawer: false,
+	};
 
-	return (
-		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<p>{!data ? "Loading..." : data}</p>
-			</header>
-		</div>
-	);
+	render() {
+		console.log("first");
+		return (
+			<div className="App">
+				<Layout>
+					<Switch>
+						<Route path="/" exact component={Auth} />
+						<Route path="/matters" component={Matters} />
+						<Route path="/billings" component={Billings} />
+						<Route path="/reports" component={Reports} />
+						<Route path="/settings" component={Settings} />
+					</Switch>
+				</Layout>
+			</div>
+		);
+	}
 }
 
 export default App;
