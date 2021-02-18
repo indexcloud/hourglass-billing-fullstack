@@ -4,13 +4,13 @@ import NavigationItem from "./NavigationItem/NavigationItem";
 
 const navigationItems = () => (
 	<ul className={classes.NavigationItems}>
-		<NavigationItem link="/matters" active>
+		<NavigationItem link="/matters" exact>
 			Matters
 		</NavigationItem>
 		<NavigationItem link="/billings">Billings</NavigationItem>
 		<NavigationItem link="/reports">Reports</NavigationItem>
 		<NavigationItem link="/settings">Settings</NavigationItem>
-		<NavigationItem link="/">Sign Out</NavigationItem>
+		<NavigationItem link="/signout">Sign Out</NavigationItem>
 	</ul>
 );
 

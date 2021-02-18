@@ -7,7 +7,7 @@ class Matters extends React.Component {
 	};
 
 	componentDidMount() {
-		axios.get("/api").then(res => {
+		axios.get("/matters").then(res => {
 			console.log(res);
 			return this.setState({data: res.data.message});
 		});
@@ -16,9 +16,7 @@ class Matters extends React.Component {
 	render() {
 		return (
 			<div>
-				<header className="App-header">
-					<p>{!this.state.data ? "Loading..." : this.state.data}</p>
-				</header>
+				<p>{!this.state.data ? "Loading..." : this.state.data}</p>
 			</div>
 		);
 	}
