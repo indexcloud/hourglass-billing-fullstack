@@ -16,7 +16,10 @@ class Matters extends React.Component {
 	render() {
 		return (
 			<div>
+				<button>All Matters</button>
+				<button>New matter</button>
 				<p>{!this.state.data ? "Loading..." : this.state.data}</p>
+				<p>Select, Actions, Matter Id, Matter, Client, Responsible Attorney, Practice area, Open Date</p>
 			</div>
 		);
 	}
