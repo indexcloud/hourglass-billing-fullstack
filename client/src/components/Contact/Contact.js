@@ -129,7 +129,7 @@ class Contact extends React.Component {
 			formData[formElementIdentifier] = this.state.contactForm[formElementIdentifier].value;
 		}
 		axios
-			.post("/contacts")
+			.post("/contacts", formData)
 			.then(res => {
 				this.setState({loading: false});
 			})
