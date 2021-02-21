@@ -17,7 +17,6 @@ class App extends React.Component {
 	};
 
 	render() {
-		console.log("first");
 		return (
 			<div className="App">
 				<Layout>
@@ -29,7 +28,7 @@ class App extends React.Component {
 						<Route path="/reports" component={Reports} />
 						<Route path="/settings" component={Settings} />
 						<Route path="/signout">
-							<Redirect to="/matters" />
+							<Redirect to="/" />
 						</Route>
 					</Switch>
 				</Layout>
