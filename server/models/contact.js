@@ -8,6 +8,7 @@ module.exports = (sequelize, Sequelize) => {
 		},
 		firstName: Sequelize.STRING,
 		lastName: Sequelize.STRING,
+		company: Sequelize.STRING,
 		email: {
 			type: Sequelize.STRING,
 			unique: true,

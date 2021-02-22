@@ -5,6 +5,7 @@ exports.postAddContact = (req, res, next) => {
 	console.log(req.body);
 	const firstName = req.body.firstName;
 	const lastName = req.body.lastName;
+	const company = req.body.company;
 	const email = req.body.email;
 	const phone = req.body.phone;
 	const street = req.body.street;
@@ -15,6 +16,7 @@ exports.postAddContact = (req, res, next) => {
 	Contact.create({
 		firstName: firstName,
 		lastName: lastName,
+		company: company,
 		email: email,
 		phone: phone,
 		street: street,

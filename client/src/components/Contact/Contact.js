@@ -33,6 +33,19 @@ class Contact extends React.Component {
 				valid: false,
 				touched: false,
 			},
+			company: {
+				elementType: "input",
+				elementConfig: {
+					type: "text",
+					placeholder: "Company",
+				},
+				value: "",
+				validation: {
+					required: true,
+				},
+				valid: false,
+				touched: false,
+			},
 			email: {
 				elementType: "input",
 				elementConfig: {
@@ -132,6 +145,7 @@ class Contact extends React.Component {
 			.post("/contacts", formData)
 			.then(res => {
 				this.setState({loading: false});
+				this.props.history.push("/contacts");
 			})
 			.catch(err => {
 				this.setState({loading: false});
@@ -184,7 +198,7 @@ class Contact extends React.Component {
 
 		return (
 			<div className={classes.ContactData}>
-				<h4>New Person</h4>
+				<h4>New Contact</h4>
 				{form}
 			</div>
 		);

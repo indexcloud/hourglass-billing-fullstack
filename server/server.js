@@ -33,8 +33,8 @@ app.get("*", (req, res) => {
 });
 
 db.sequelize
-	// .sync({force: true})
-	.sync()
+	.sync({force: true})
+	// .sync()
 	.then(result => {
 		console.log("Database looks fine");
 	})

@@ -1,19 +1,26 @@
 import React from "react";
+import {Route} from "react-router-dom";
 import Contact from "../../components/Contact/Contact";
 
 class Contacts extends React.Component {
+	newContactCancelledHandler = () => {
+		this.props.history.replace("/contacts/");
+	};
+
+	newContactHandler = () => {
+		this.props.history.replace("/contacts/new");
+	};
+
 	render() {
 		return (
 			<div>
-				<button>ALL</button>
-				<button>People</button>
-				<p>Path = contacts/new?type=person</p>
-				<button>Companies</button>
-				<p>Path = contacts/new?type=company</p>
-				<button>New person</button>
-				<button>New company</button>
+				{/* <p>Path = contacts/new?type=person</p>
+				<p>Path = contacts/new?type=company</p> */}
+				<button onClick={this.newContactHandler}>New Contact</button>
+				<button onClick={this.newContactCancelledHandler}>Cancel</button>
 				<p>Select, Actions, Contact Id, Type, Name, Phone, Email, Address</p>
-				<Contact />
+				<button>Contact Table</button>
+				<Route path={this.props.match.path + "/new"} component={Contact} />
 			</div>
 		);
 	}
