@@ -16,10 +16,11 @@ class Contacts extends React.Component {
 			<div>
 				{/* <p>Path = contacts/new?type=person</p>
 				<p>Path = contacts/new?type=company</p> */}
+				<button>All Contacts Table</button>
 				<button onClick={this.newContactHandler}>New Contact</button>
 				<button onClick={this.newContactCancelledHandler}>Cancel</button>
 				<p>Select, Actions, Contact Id, Type, Name, Phone, Email, Address</p>
-				<button>Contact Table</button>
+
 				<Route path={this.props.match.path + "/new"} component={Contact} />
 			</div>
 		);

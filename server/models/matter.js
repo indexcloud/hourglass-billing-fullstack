@@ -7,6 +7,7 @@ module.exports = (sequelize, Sequelize) => {
 			primaryKey: true,
 		},
 		matter: Sequelize.STRING,
+		description: Sequelize.STRING,
 		practiceArea: Sequelize.STRING,
 	});
 	return Matter;
