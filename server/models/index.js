@@ -34,11 +34,26 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
+// Import models
 const Contact = require("./contact")(sequelize, Sequelize);
+const Matter = require("./matter")(sequelize, Sequelize);
+const Invoice = require("./invoice")(sequelize, Sequelize);
+const Service = require("./service")(sequelize, Sequelize);
+const Expense = require("./expense")(sequelize, Sequelize);
 
 // Define tables relations
+Contact.hasMany(Matter);
+Matter.belongsTo(Contact);
+Contact.hasMany(Invoice);
+Matter.hasMany(Invoice);
+Invoice.belongsTo(Contact);
+Invoice.belongsTo(Matter);
 
-// db list
+// Table list
 db.contact = Contact;
+db.matter = Matter;
+db.invoice = Invoice;
+db.service = Service;
+db.expense = Expense;
 
 module.exports = db;

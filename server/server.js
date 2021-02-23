@@ -23,7 +23,6 @@ app.use(contactRoutes);
 
 // Handle GET requests to /api route
 app.get("/matters", (req, res) => {
-	console.log("Hello");
 	res.send({message: "All the matters from server!"});
 });
 
@@ -33,8 +32,8 @@ app.get("*", (req, res) => {
 });
 
 db.sequelize
-	.sync({force: true})
-	// .sync()
+	.sync()
+	// .sync({force: true})
 	.then(result => {
 		console.log("Database looks fine");
 	})
