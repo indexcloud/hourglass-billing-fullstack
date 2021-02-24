@@ -6,6 +6,7 @@ class Settings extends React.Component {
 			<div>
 				<button>Manage Users</button>
 				<p>Name, Email Address, Role, Permission, Status</p>
+				<p>Adding company address to Invoice</p>
 			</div>
 		);
 	}

@@ -8,6 +8,7 @@ const navigationItems = () => (
 			Matters
 		</NavigationItem>
 		<NavigationItem link="/contacts">Contacts</NavigationItem>
+		<NavigationItem link="/activities">Activities</NavigationItem>
 		<NavigationItem link="/billing">Billing</NavigationItem>
 		<NavigationItem link="/reports">Reports</NavigationItem>
 		<NavigationItem link="/settings">Settings</NavigationItem>
