@@ -1,17 +1,37 @@
 import React from "react";
+import Select from "react-select";
 
 import classes from "./Matter.module.css";
 import axios from "axios";
 import Input from "../UI/Input/Input";
 
+const groupStyles = {
+	display: "flex",
+	alignItems: "center",
+	justifyContent: "space-between",
+};
+// const groupBadgeStyles = {
+// 	backgroundColor: "#EBECF0",
+// 	borderRadius: "2em",
+// 	color: "#172B4D",
+// 	display: "inline-block",
+// 	fontSize: 12,
+// 	fontWeight: "normal",
+// 	lineHeight: "1",
+// 	minWidth: 1,
+// 	padding: "0.16666666666667em 0.5em",
+// 	textAlign: "center",
+// };
+
 class Contact extends React.Component {
 	state = {
+		contacts: "",
 		matterForm: {
 			matter: {
 				elementType: "input",
 				elementConfig: {
 					type: "text",
-					placeholder: "Matter",
+					placeholder: "Matter Number",
 				},
 				value: "",
 				validation: {
@@ -24,7 +44,7 @@ class Contact extends React.Component {
 				elementType: "input",
 				elementConfig: {
 					type: "text",
-					placeholder: "Description",
+					placeholder: "Matter Description",
 				},
 				value: "",
 				validation: {
@@ -46,22 +66,16 @@ class Contact extends React.Component {
 				valid: false,
 				touched: false,
 			},
-			clientID: {
-				elementType: "input",
-				elementConfig: {
-					type: "text",
-					placeholder: "Client",
-				},
-				value: "",
-				validation: {
-					required: true,
-				},
-				valid: false,
-				touched: false,
-			},
 		},
 		formIsValid: false,
 		loading: false,
+	};
+
+	componentDidMount = () => {
+		console.log("Hello");
+		axios.get("/contacts").then(res => {
+			this.setState({contacts: res.data});
+		});
 	};
 
 	matterHandler = event => {
@@ -72,10 +86,10 @@ class Contact extends React.Component {
 			formData[formElementIdentifier] = this.state.matterForm[formElementIdentifier].value;
 		}
 		axios
-			.post("/contacts", formData)
+			.post("/matters", formData)
 			.then(res => {
 				this.setState({loading: false});
-				this.props.history.push("/contacts");
+				this.props.history.push("/matters");
 			})
 			.catch(err => {
 				this.setState({loading: false});
@@ -101,6 +115,40 @@ class Contact extends React.Component {
 	};
 
 	render() {
+		console.log(this.state.contacts);
+		let contacts = [];
+		for (let contact of this.state.contacts) {
+			const ojbec = {};
+			ojbec.value = contact.contactId;
+			ojbec.label = contact.firstName + " " + contact.lastName;
+			contacts.push(ojbec);
+		}
+		console.log(contacts);
+		const groupedOptions = [
+			{
+				label: "Person",
+				// options: [
+				// 	{value: "ocean", label: "Ocean"},
+				// 	{value: "blue", label: "Blue"},
+				// ],
+				options: contacts,
+			},
+			{
+				label: "Company",
+				options: [
+					{value: "vanilla", label: "Vanilla"},
+					{value: "chocolate", label: "Chocolate"},
+				],
+			},
+		];
+
+		const formatGroupLabel = data => (
+			<div style={groupStyles}>
+				<span>{data.label}</span>
+				{/* <span style={groupBadgeStyles}>{data.options.length}</span> */}
+			</div>
+		);
+
 		const formElementsArray = [];
 		for (let key in this.state.matterForm) {
 			formElementsArray.push({
@@ -110,6 +158,7 @@ class Contact extends React.Component {
 		}
 		let form = (
 			<form onSubmit={this.matterHandler}>
+				<Select options={groupedOptions} formatGroupLabel={formatGroupLabel} />
 				{formElementsArray.map(formElement => (
 					<Input
 						key={formElement.id}
@@ -120,6 +169,7 @@ class Contact extends React.Component {
 						shouldValidate={formElement.config.validation}
 						touched={formElement.config.touched}
 						changed={event => this.inputChangedHandler(event, formElement.id)}
+						label={formElement.config.elementConfig.placeholder}
 					/>
 				))}
 				<button>Save Matter</button>

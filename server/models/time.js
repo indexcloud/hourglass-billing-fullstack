@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
-	const Service = sequelize.define("service", {
-		serviceId: {
+	const Time = sequelize.define("time", {
+		timeId: {
 			type: Sequelize.INTEGER,
 			autoIncrement: true,
 			allowNull: false,
@@ -11,5 +11,5 @@ module.exports = (sequelize, Sequelize) => {
 		quantity: Sequelize.DOUBLE,
 		rate: Sequelize.DOUBLE,
 	});
-	return Service;
+	return Time;
 };

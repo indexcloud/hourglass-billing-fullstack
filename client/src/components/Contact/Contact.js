@@ -190,6 +190,7 @@ class Contact extends React.Component {
 						shouldValidate={formElement.config.validation}
 						touched={formElement.config.touched}
 						changed={event => this.inputChangedHandler(event, formElement.id)}
+						label={formElement.config.elementConfig.placeholder}
 					/>
 				))}
 				<button>Save contact</button>

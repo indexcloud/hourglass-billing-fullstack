@@ -4,7 +4,7 @@ class Activities extends React.Component {
 	render() {
 		return (
 			<div>
-				<button>Service</button>
+				<button>Time</button>
 				<button>Expense</button>
 			</div>
 		);

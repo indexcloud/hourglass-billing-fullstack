@@ -35,10 +35,11 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 // Import models
+const User = require("./user")(sequelize, Sequelize);
 const Contact = require("./contact")(sequelize, Sequelize);
 const Matter = require("./matter")(sequelize, Sequelize);
 const Invoice = require("./invoice")(sequelize, Sequelize);
-const Service = require("./service")(sequelize, Sequelize);
+const Time = require("./time")(sequelize, Sequelize);
 const Expense = require("./expense")(sequelize, Sequelize);
 
 // Define tables relations
@@ -50,10 +51,11 @@ Invoice.belongsTo(Contact);
 Invoice.belongsTo(Matter);
 
 // Table list
+db.user = User;
 db.contact = Contact;
 db.matter = Matter;
 db.invoice = Invoice;
-db.service = Service;
+db.time = Time;
 db.expense = Expense;
 
 module.exports = db;

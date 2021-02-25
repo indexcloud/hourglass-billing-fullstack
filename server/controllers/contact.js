@@ -1,8 +1,11 @@
 const db = require("../models");
 const Contact = db.contact;
 
+exports.getContacts = (req, res, next) => {
+	Contact.findAll().then(contacts => res.send(contacts));
+};
+
 exports.postAddContact = (req, res, next) => {
-	console.log(req.body);
 	const firstName = req.body.firstName;
 	const lastName = req.body.lastName;
 	const company = req.body.company;

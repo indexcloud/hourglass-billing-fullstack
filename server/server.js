@@ -9,6 +9,7 @@ const app = express();
 // app.use(cors());
 
 const contactRoutes = require("./routes/contact");
+const matterRoutes = require("./routes/matter");
 
 // Express BodyParser
 app.use(express.json()); // request body has been parsed
@@ -20,6 +21,7 @@ app.use(express.static(path.resolve(__dirname, "../client/build")));
 const db = require("./models");
 
 app.use(contactRoutes);
+app.use(matterRoutes);
 
 // Handle GET requests to /api route
 app.get("/matters", (req, res) => {
