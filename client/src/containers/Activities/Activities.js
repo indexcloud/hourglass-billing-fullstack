@@ -25,13 +25,13 @@ class Activities extends React.Component {
 		return (
 			<div>
 				<div>Duration, Time, Matter, Description, Date, Attorney, Rate</div>
-				<ActivityTable />
 				<button>Time</button>
 				<button>Expense</button>
 				<button onClick={this.newTimeHandler}>New Time Entry</button>
 				<button onClick={this.newTimeCancelledHandler}>Cancel Time Entry</button>
 				<button onClick={this.newExpenseHandler}>New Expense Entry</button>
 				<button onClick={this.newExpenseCancelledHandler}>Cancel Expense Entry</button>
+				<ActivityTable />
 				<Route path={this.props.match.path + "/new-time"} component={Time} />
 				<Route path={this.props.match.path + "/new-expense"} component={Expense} />
 			</div>
