@@ -6,7 +6,6 @@ exports.postAddMatter = (req, res, next) => {
 	const description = req.body.description;
 	const practiceArea = req.body.practiceArea;
 	const clientId = req.body.clientId;
-
 	Matter.create({
 		matter: matter,
 		description: description,

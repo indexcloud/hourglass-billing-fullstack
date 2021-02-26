@@ -9,7 +9,7 @@ module.exports = (sequelize, Sequelize) => {
 		matter: Sequelize.STRING,
 		description: Sequelize.STRING,
 		practiceArea: Sequelize.STRING,
-		clientID: Sequelize.INTEGER,
+		clientId: Sequelize.INTEGER,
 	});
 	return Matter;
 };
