@@ -24,52 +24,56 @@ const groupStyles = {
 // };
 
 class Contact extends React.Component {
-	state = {
-		contacts: "",
-		matterForm: {
-			matter: {
-				elementType: "input",
-				elementConfig: {
-					type: "text",
-					placeholder: "Matter Number",
+	constructor(props) {
+		super(props);
+		this.state = {
+			contacts: "",
+			clientId: "",
+			matterForm: {
+				matter: {
+					elementType: "input",
+					elementConfig: {
+						type: "text",
+						placeholder: "Matter Number",
+					},
+					value: "",
+					validation: {
+						required: true,
+					},
+					valid: false,
+					touched: false,
 				},
-				value: "",
-				validation: {
-					required: true,
+				description: {
+					elementType: "input",
+					elementConfig: {
+						type: "text",
+						placeholder: "Matter Description",
+					},
+					value: "",
+					validation: {
+						required: true,
+					},
+					valid: false,
+					touched: false,
 				},
-				valid: false,
-				touched: false,
+				practiceArea: {
+					elementType: "input",
+					elementConfig: {
+						type: "text",
+						placeholder: "Practice Area",
+					},
+					value: "",
+					validation: {
+						required: true,
+					},
+					valid: false,
+					touched: false,
+				},
 			},
-			description: {
-				elementType: "input",
-				elementConfig: {
-					type: "text",
-					placeholder: "Matter Description",
-				},
-				value: "",
-				validation: {
-					required: true,
-				},
-				valid: false,
-				touched: false,
-			},
-			practiceArea: {
-				elementType: "input",
-				elementConfig: {
-					type: "text",
-					placeholder: "Practice Area",
-				},
-				value: "",
-				validation: {
-					required: true,
-				},
-				valid: false,
-				touched: false,
-			},
-		},
-		formIsValid: false,
-		loading: false,
-	};
+			formIsValid: false,
+			loading: false,
+		};
+	}
 
 	componentDidMount = () => {
 		console.log("Hello");
@@ -85,6 +89,8 @@ class Contact extends React.Component {
 		for (let formElementIdentifier in this.state.matterForm) {
 			formData[formElementIdentifier] = this.state.matterForm[formElementIdentifier].value;
 		}
+
+		formData.clientId = this.state.clientId;
 		axios
 			.post("/matters", formData)
 			.then(res => {
@@ -114,16 +120,40 @@ class Contact extends React.Component {
 		this.setState({matterForm: updatedMatterForm, formIsValid: formIsValid});
 	};
 
+	handleChange = selectedOption => {
+		console.log(selectedOption.value);
+
+		// const updatedMatterForm = {
+		// 	...this.state,
+		// 	clientId: selectedOption.value,
+		// };
+
+		// const updatedFormElement = {
+		// 	...updatedMatterForm.clientId,
+		// };
+
+		// console.log(updatedFormElement);
+		// updatedFormElement.value = selectedOption.value;
+
+		this.setState({clientId: selectedOption.value});
+		// console.log(this.state.matterForm);
+	};
+
 	render() {
-		console.log(this.state.contacts);
-		let contacts = [];
+		let persons = [];
+		let companies = [];
 		for (let contact of this.state.contacts) {
 			const ojbec = {};
 			ojbec.value = contact.contactId;
 			ojbec.label = contact.firstName + " " + contact.lastName;
-			contacts.push(ojbec);
+			persons.push(ojbec);
 		}
-		console.log(contacts);
+		for (let contact of this.state.contacts) {
+			const ojbec = {};
+			ojbec.value = contact.contactId;
+			ojbec.label = contact.contactId + " " + contact.company;
+			companies.push(ojbec);
+		}
 		const groupedOptions = [
 			{
 				label: "Person",
@@ -131,14 +161,15 @@ class Contact extends React.Component {
 				// 	{value: "ocean", label: "Ocean"},
 				// 	{value: "blue", label: "Blue"},
 				// ],
-				options: contacts,
+				options: persons,
 			},
 			{
 				label: "Company",
-				options: [
-					{value: "vanilla", label: "Vanilla"},
-					{value: "chocolate", label: "Chocolate"},
-				],
+				// options: [
+				// 	{value: "vanilla", label: "Vanilla"},
+				// 	{value: "chocolate", label: "Chocolate"},
+				// ],
+				options: companies,
 			},
 		];
 
@@ -156,9 +187,16 @@ class Contact extends React.Component {
 				config: this.state.matterForm[key],
 			});
 		}
+
+		// const selectedOption = this.state.matterForm.clientId;
+
 		let form = (
 			<form onSubmit={this.matterHandler}>
-				<Select options={groupedOptions} formatGroupLabel={formatGroupLabel} />
+				<Select
+					onChange={event => this.handleChange(event)}
+					options={groupedOptions}
+					formatGroupLabel={formatGroupLabel}
+				/>
 				{formElementsArray.map(formElement => (
 					<Input
 						key={formElement.id}
