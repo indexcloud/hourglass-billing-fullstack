@@ -1,6 +1,7 @@
 import React from "react";
 import {Route} from "react-router-dom";
 import Contact from "../../components/Contact/Contact";
+import ContactTable from "../../components/Matter/MatterTable";
 
 class Contacts extends React.Component {
 	newContactCancelledHandler = () => {
@@ -16,7 +17,7 @@ class Contacts extends React.Component {
 			<div>
 				{/* <p>Path = contacts/new?type=person</p>
 				<p>Path = contacts/new?type=company</p> */}
-				<button>All Contacts Table</button>
+				<ContactTable />
 				<button onClick={this.newContactHandler}>New Contact</button>
 				<button onClick={this.newContactCancelledHandler}>Cancel</button>
 				<p>Select, Actions, Contact Id, Type, Name, Phone, Email, Address</p>

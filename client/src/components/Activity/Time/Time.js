@@ -2,7 +2,7 @@ import React from "react";
 
 import classes from "./Time.module.css";
 import axios from "axios";
-import Input from "../UI/Input/Input";
+import Input from "../../UI/Input/Input";
 
 class Time extends React.Component {
 	state = {

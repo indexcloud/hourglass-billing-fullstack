@@ -1,10 +1,11 @@
 import React from "react";
+import BillTable from "../../components/Bill/BillTable";
 
 class Billing extends React.Component {
 	render() {
 		return (
 			<div>
-				<button>Bills</button>
+				<BillTable />
 				<button>Outstanding Balance</button>
 				<button>Record Payment</button>
 				<button>New Bills</button>

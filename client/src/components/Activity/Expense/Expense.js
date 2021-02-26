@@ -2,7 +2,7 @@ import React from "react";
 
 import classes from "./Expense.module.css";
 import axios from "axios";
-import Input from "../UI/Input/Input";
+import Input from "../../UI/Input/Input";
 
 class Expense extends React.Component {
 	state = {

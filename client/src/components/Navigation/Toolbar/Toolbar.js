@@ -1,4 +1,7 @@
 import React from "react";
+import {NavLink} from "react-router-dom";
+import Button from "react-bootstrap/esm/Button";
+
 import classes from "./Toolbar.module.css";
 import NavigationItems from "../NavigationItems/NavigationItems";
 import DrawerToggle from "../SideDrawer/DrawerToggle/DrawerToggle";
@@ -9,7 +12,11 @@ const toolbar = props => (
 		<nav className={classes.DesktopOnly}>
 			<NavigationItems />
 		</nav>
-		<button>New Time Entry</button>
+		<NavLink to="/activities/new-time">
+			<Button variant="secondary" size="sm">
+				New Time Entry
+			</Button>
+		</NavLink>
 	</header>
 );
 

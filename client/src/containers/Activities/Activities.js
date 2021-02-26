@@ -1,7 +1,8 @@
 import React from "react";
 import {Route} from "react-router-dom";
-import Time from "../../components/Time/Time";
-import Expense from "../../components/Expense/Expense";
+import Time from "../../components/Activity/Time/Time";
+import Expense from "../../components/Activity/Expense/Expense";
+import ActivityTable from "../../components/Activity/ActivityTable";
 
 class Activities extends React.Component {
 	newTimeCancelledHandler = () => {
@@ -24,7 +25,7 @@ class Activities extends React.Component {
 		return (
 			<div>
 				<div>Duration, Time, Matter, Description, Date, Attorney, Rate</div>
-				<button>All Activities</button>
+				<ActivityTable />
 				<button>Time</button>
 				<button>Expense</button>
 				<button onClick={this.newTimeHandler}>New Time Entry</button>
