@@ -76,7 +76,6 @@ class Contact extends React.Component {
 	}
 
 	componentDidMount = () => {
-		console.log("Hello");
 		axios.get("/contacts").then(res => {
 			this.setState({contacts: res.data});
 		});

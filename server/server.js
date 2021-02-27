@@ -5,9 +5,13 @@ const express = require("express");
 // const cors = require("cors");
 
 const app = express();
-// const session = require("express-session");
+const passport = require("passport");
+const session = require("express-session");
+const flash = require("connect-flash");
 // app.use(cors());
 
+// Importing routes
+const authRoutes = require("./routes/auth");
 const contactRoutes = require("./routes/contact");
 const matterRoutes = require("./routes/matter");
 
@@ -18,15 +22,26 @@ app.use(express.urlencoded({extended: false})); // request body has been url enc
 // Have Node serve the files for our built React app
 app.use(express.static(path.resolve(__dirname, "../client/build")));
 
+app.use(session({secret: "keyboard cat", resave: true, saveUninitialized: true}));
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+
+app.use(flash());
+
 const db = require("./models");
 
+require("./config/passport.js")(passport, db.user);
+
+// Passing local variables to Template Engine Render Pages
+// app.use((req, res, next) => {
+// 	res.locals.isAuthenticated = req.session.isLoggedIn;
+// 	// res.locals.csrfToken = req.csrfToken();
+// 	next();
+// });
+
+app.use(authRoutes);
 app.use(contactRoutes);
 app.use(matterRoutes);
-
-// Handle GET requests to /api route
-app.get("/matters", (req, res) => {
-	res.send({message: "All the matters from server!"});
-});
 
 // All other GET requests not handled before will return our React app
 app.get("*", (req, res) => {
@@ -34,8 +49,8 @@ app.get("*", (req, res) => {
 });
 
 db.sequelize
-	// .sync()
-	.sync({force: true})
+	.sync()
+	// .sync({force: true})
 	.then(result => {
 		console.log("Database looks fine");
 	})

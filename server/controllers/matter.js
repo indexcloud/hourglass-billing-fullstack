@@ -17,3 +17,12 @@ exports.postAddMatter = (req, res, next) => {
 		})
 		.catch(err => console.log(err));
 };
+
+exports.getMatters = (req, res, next) => {
+	Matter.findAll()
+		.then(result => {
+			console.log(result);
+			res.send(result);
+		})
+		.catch(err => console.log(err));
+};

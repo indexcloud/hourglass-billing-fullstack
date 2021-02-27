@@ -17,7 +17,7 @@ module.exports = (sequelize, Sequelize) => {
 				isEmail: true,
 			},
 		},
-		phone: Sequelize.INTEGER,
+		phone: Sequelize.STRING,
 		street: Sequelize.STRING,
 		city: Sequelize.STRING,
 		zipCode: Sequelize.STRING,

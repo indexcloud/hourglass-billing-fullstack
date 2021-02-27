@@ -4,8 +4,8 @@ class Settings extends React.Component {
 	render() {
 		return (
 			<div>
-				<button>Manage Users</button>
-				<p>Name, Email Address, Role, Permission, Status</p>
+				<button>Add User Data</button>
+				<p>Name, Company Name</p>
 				<p>Adding company address to Invoice</p>
 			</div>
 		);

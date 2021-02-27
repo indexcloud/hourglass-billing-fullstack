@@ -1,6 +1,6 @@
 import React from "react";
-import {Redirect} from "react-router-dom";
-import Button from "react-bootstrap/Button";
+import {Redirect, NavLink} from "react-router-dom";
+import {Button} from "react-bootstrap";
 
 import Input from "../../components/UI/Input/Input";
 import classes from "./Auth.module.css";
@@ -49,7 +49,6 @@ class Auth extends React.Component {
 			[controlName]: {
 				...this.state.controls[controlName],
 				value: event.target.value,
-				valid: this.checkValidity(event.target.value, this.state.controls[controlName].validation),
 				touched: true,
 			},
 		};
@@ -107,11 +106,11 @@ class Auth extends React.Component {
 				{errorMessage}
 				<form onSubmit={this.submitHandler}>
 					{form}
-					<Button variant="success">Signin</Button>{" "}
+					<Button variant="success">Signin</Button>
 				</form>
-				<Button clicked={this.switchAuthModeHandler}>
-					SWITCH TO {this.state.isSignup ? "SIGNIN" : "SIGNUP"}
-				</Button>
+				<NavLink to="/signup">
+					<Button clicked={this.switchAuthModeHandler}>Sign Up</Button>
+				</NavLink>
 			</div>
 		);
 	}

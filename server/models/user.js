@@ -1,16 +1,10 @@
 module.exports = (sequelize, Sequelize) => {
-	const User = sequelize.define("contact", {
+	const User = sequelize.define("user", {
 		userId: {
 			type: Sequelize.INTEGER,
 			autoIncrement: true,
 			allowNull: false,
 			primaryKey: true,
-		},
-		firstName: Sequelize.STRING,
-		lastName: Sequelize.STRING,
-		company: Sequelize.STRING,
-		role: {
-			type: Sequelize.INTEGER,
 		},
 		email: {
 			type: Sequelize.STRING,
@@ -24,6 +18,12 @@ module.exports = (sequelize, Sequelize) => {
 			type: Sequelize.STRING,
 			allowNull: true,
 			validate: {notEmpty: true},
+		},
+		firstName: Sequelize.STRING,
+		lastName: Sequelize.STRING,
+		company: Sequelize.STRING,
+		role: {
+			type: Sequelize.INTEGER,
 		},
 		phone: Sequelize.INTEGER,
 		street: Sequelize.STRING,

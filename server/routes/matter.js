@@ -1,7 +1,9 @@
 const express = require("express");
-const contactController = require("../controllers/matter");
+const matterController = require("../controllers/matter");
 const router = express.Router();
 
-router.post("/matters", contactController.postAddMatter);
+router.get("/matters", matterController.getMatters);
+
+router.post("/matters", matterController.postAddMatter);
 
 module.exports = router;

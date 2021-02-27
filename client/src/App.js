@@ -4,6 +4,8 @@ import "./App.css";
 import {Switch, Route, Redirect} from "react-router-dom";
 import Layout from "./hoc/Layout/Layout";
 import Auth from "./containers/Auth/Auth";
+import SignIn from "./containers/Auth/SignIn";
+import SignUp from "./containers/Auth/SignUp";
 import Matters from "./containers/Matters/Matters";
 import Contacts from "./containers/Contacts/Contacts";
 import Activities from "./containers/Activities/Activities";
@@ -22,7 +24,8 @@ class App extends React.Component {
 			<div className="App">
 				<Layout>
 					<Switch>
-						<Route path="/" exact component={Auth} />
+						<Route path="/" exact component={SignIn} />
+						<Route path="/signup" component={SignUp} />
 						<Route path="/matters" component={Matters} />
 						<Route path="/contacts" component={Contacts} />
 						<Route path="/activities" component={Activities} />
