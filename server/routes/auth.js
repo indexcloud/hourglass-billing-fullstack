@@ -9,20 +9,8 @@ router.post("/signup", passport.authenticate("local-signup", {failureRedirect: "
 
 // Local Sign In
 router.post("/signin", passport.authenticate("local-signin", {failureRedirect: "/signin"}), authController.postSignIn);
-// router.post("/signin", authController.postSignIn);
-
-// Google Sign In
-router.get("/auth/google", passport.authenticate("google", {scope: ["profile", "email"]}));
-
-router.get("/auth/google/callback", passport.authenticate("google", {failureRedirect: "/signin"}), function (req, res) {
-	isLoggedIn = true;
-	res.send(isLoggedIn);
-});
 
 // Sign Out
 router.get("/signout", authController.getSignOut);
-
-// Reset Password
-router.get("/reset", authController.getReset);
 
 module.exports = router;

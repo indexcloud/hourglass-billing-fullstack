@@ -1,6 +1,15 @@
 const db = require("../models");
 const Matter = db.matter;
 
+exports.getMatters = (req, res, next) => {
+	Matter.findAll()
+		.then(result => {
+			console.log(result);
+			res.send(result);
+		})
+		.catch(err => console.log(err));
+};
+
 exports.postAddMatter = (req, res, next) => {
 	const matter = req.body.matter;
 	const description = req.body.description;
@@ -14,15 +23,6 @@ exports.postAddMatter = (req, res, next) => {
 	})
 		.then(result => {
 			console.log("Created New Matter");
-		})
-		.catch(err => console.log(err));
-};
-
-exports.getMatters = (req, res, next) => {
-	Matter.findAll()
-		.then(result => {
-			console.log(result);
-			res.send(result);
 		})
 		.catch(err => console.log(err));
 };

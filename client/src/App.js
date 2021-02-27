@@ -3,7 +3,6 @@ import "./App.css";
 
 import {Switch, Route, Redirect} from "react-router-dom";
 import Layout from "./hoc/Layout/Layout";
-import Auth from "./containers/Auth/Auth";
 import SignIn from "./containers/Auth/SignIn";
 import SignUp from "./containers/Auth/SignUp";
 import Matters from "./containers/Matters/Matters";

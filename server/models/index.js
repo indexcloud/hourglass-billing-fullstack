@@ -42,7 +42,7 @@ const Invoice = require("./invoice")(sequelize, Sequelize);
 const Time = require("./time")(sequelize, Sequelize);
 
 // Define tables relations
-// User.hasMany(Contact);
+User.hasMany(Time);
 // Contact.hasMany(Matter);
 // Matter.belongsTo(Contact);
 // Contact.hasMany(Invoice);

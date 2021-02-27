@@ -38,7 +38,7 @@ class MatterTable extends React.Component {
 			<Table responsive>
 				<thead>
 					<tr>
-						<th>#</th>
+						<th>Matter Id</th>
 						{Array.from({length: 12}).map((_, index) => (
 							<th key={index}>Table heading</th>
 						))}

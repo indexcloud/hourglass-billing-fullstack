@@ -1,7 +1,7 @@
 import React from "react";
 import {Route} from "react-router-dom";
 import Contact from "../../components/Contact/Contact";
-import ContactTable from "../../components/Matter/MatterTable";
+import ContactTable from "../../components/Contact/ContactTable";
 
 class Contacts extends React.Component {
 	newContactCancelledHandler = () => {

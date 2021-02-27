@@ -7,19 +7,6 @@ import Input from "../../UI/Input/Input";
 class Time extends React.Component {
 	state = {
 		expenseForm: {
-			user: {
-				elementType: "input",
-				elementConfig: {
-					type: "text",
-					placeholder: "User",
-				},
-				value: "",
-				validation: {
-					required: true,
-				},
-				valid: false,
-				touched: false,
-			},
 			matter: {
 				elementType: "input",
 				elementConfig: {

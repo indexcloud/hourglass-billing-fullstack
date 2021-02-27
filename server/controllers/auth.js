@@ -8,9 +8,8 @@ exports.postSignIn = (req, res, next) => {
 };
 
 exports.getSignOut = (req, res, next) => {
-	req.session.destroy(err => {
-		res.redirect("/");
-	});
+	isLoggedIn = false;
+	res.send(isLoggedIn);
 };
 
 exports.isLoggedIn = (req, res, next) => {
@@ -18,18 +17,4 @@ exports.isLoggedIn = (req, res, next) => {
 		return next();
 	}
 	res.redirect("/signin");
-};
-
-exports.getReset = (req, res, next) => {
-	let message = req.flash("error");
-	if (message.length > 0) {
-		message = message[0];
-	} else {
-		message = null;
-	}
-	res.render("auth/reset", {
-		path: "/reset",
-		pageTitle: "Reset Password",
-		errorMessage: message,
-	});
 };

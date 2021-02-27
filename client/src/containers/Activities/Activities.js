@@ -24,7 +24,7 @@ class Activities extends React.Component {
 		return (
 			<div>
 				<div>Duration, Time, Matter, Description, Date, Attorney, Rate</div>
-				<button>Time</button>
+
 				<button onClick={this.newTimeHandler}>New Time Entry</button>
 				<button onClick={this.newTimeCancelledHandler}>Cancel Time Entry</button>
 				<ActivityTable />

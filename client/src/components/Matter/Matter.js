@@ -150,7 +150,7 @@ class Contact extends React.Component {
 		for (let contact of this.state.contacts) {
 			const ojbec = {};
 			ojbec.value = contact.contactId;
-			ojbec.label = contact.contactId + " " + contact.company;
+			ojbec.label = contact.company;
 			companies.push(ojbec);
 		}
 		const groupedOptions = [

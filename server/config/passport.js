@@ -54,7 +54,7 @@ module.exports = (passport, user) => {
 
 	// Serialize
 	passport.serializeUser((user, done) => {
-		done(null, user.id);
+		done(null, user);
 	});
 
 	// Deserialzie user
@@ -80,13 +80,16 @@ module.exports = (passport, user) => {
 
 			function (req, username, password, done) {
 				const User = user;
-				const isValidPassword = (userpass, password) => {
-					return bcrypt.compareSync(password, userpass);
+				console.log(req.body);
+				const newUsername = req.body.email;
+				const newPassword = req.body.password;
+				const isValidPassword = (userpass, newPassword) => {
+					return bcrypt.compareSync(newPassword, userpass);
 				};
 
 				User.findOne({
 					where: {
-						email: username,
+						email: newUsername,
 					},
 				})
 					.then(user => {
@@ -110,40 +113,6 @@ module.exports = (passport, user) => {
 							message: "Something went wrong with your Signin",
 						});
 					});
-			}
-		)
-	);
-
-	// Google Sign In
-	passport.use(
-		new GoogleStrategy(
-			{
-				clientID: process.env.GOOGLE_CLIENT_ID,
-				clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-				callbackURL: process.env.GOOGLE_CALLBACK_URL,
-			},
-			function (accessToken, refreshToken, profile, done) {
-				// console.log(profile);
-				User.findOne({
-					where: {
-						email: profile.emails[0].value,
-					},
-				}).then(user => {
-					if (user) {
-						// user.createCart();
-						return done(null, user);
-					} else {
-						User.create({email: profile.emails[0].value}).then((newUser, created) => {
-							if (!newUser) {
-								return done(null, false);
-							}
-							if (newUser) {
-								// newUser.createCart();
-								return done(null, newUser);
-							}
-						});
-					}
-				});
 			}
 		)
 	);

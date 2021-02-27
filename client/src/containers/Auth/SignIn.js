@@ -54,7 +54,7 @@ class SignUp extends React.Component {
 		axios
 			.post("/signin", formData)
 			.then(res => {
-				console.log(res);
+				console.log(res.data);
 				this.setState({loading: false});
 				this.props.history.push("/signin");
 			})
