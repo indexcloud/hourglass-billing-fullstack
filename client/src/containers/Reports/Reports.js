@@ -1,10 +1,12 @@
 import React from "react";
+import BarChart from "../../components/Chart/BarChart";
 
 class Reports extends React.Component {
 	render() {
 		return (
 			<div>
-				<button>Line Chart to see how many hours user work each day</button>
+				<button>Billable Hours</button>
+				<BarChart />
 			</div>
 		);
 	}

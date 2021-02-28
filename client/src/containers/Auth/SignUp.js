@@ -69,7 +69,7 @@ class SignUp extends React.Component {
 			.post("/signup", formData)
 			.then(res => {
 				this.setState({loading: false});
-				this.props.history.push("/signup");
+				<Redirect to={"/"} />;
 			})
 			.catch(err => {
 				this.setState({loading: false});

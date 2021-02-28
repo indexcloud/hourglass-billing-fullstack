@@ -11,7 +11,7 @@ class MatterTable extends React.Component {
 	}
 
 	componentDidMount() {
-		console.log("Working");
+		console.log("Matters Working");
 		axios.get("/matters").then(res => {
 			console.log(res.data);
 			this.setState({matters: res.data});

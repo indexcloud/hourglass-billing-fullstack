@@ -6,7 +6,7 @@ import Input from "../../UI/Input/Input";
 
 class Time extends React.Component {
 	state = {
-		expenseForm: {
+		timeForm: {
 			matter: {
 				elementType: "input",
 				elementConfig: {
@@ -47,7 +47,7 @@ class Time extends React.Component {
 				valid: false,
 				touched: false,
 			},
-			duration: {
+			quantity: {
 				elementType: "input",
 				elementConfig: {
 					type: "number",
@@ -74,11 +74,11 @@ class Time extends React.Component {
 				valid: false,
 				touched: false,
 			},
-			totalAmount: {
+			amount: {
 				elementType: "input",
 				elementConfig: {
 					type: "number",
-					placeholder: "Total Amount",
+					placeholder: "Amount",
 				},
 				value: "",
 				validation: {
@@ -92,18 +92,18 @@ class Time extends React.Component {
 		loading: false,
 	};
 
-	contactHandler = event => {
+	submitHandler = event => {
 		event.preventDefault();
 		this.setState({loading: true});
 		const formData = {};
-		for (let formElementIdentifier in this.state.expenseForm) {
-			formData[formElementIdentifier] = this.state.expenseForm[formElementIdentifier].value;
+		for (let formElementIdentifier in this.state.timeForm) {
+			formData[formElementIdentifier] = this.state.timeForm[formElementIdentifier].value;
 		}
 		axios
-			.post("/contacts", formData)
+			.post("/activities/new-time", formData)
 			.then(res => {
 				this.setState({loading: false});
-				this.props.history.push("/contacts");
+				this.props.history.push("/activities");
 			})
 			.catch(err => {
 				this.setState({loading: false});
@@ -111,33 +111,33 @@ class Time extends React.Component {
 	};
 
 	inputChangedHandler = (event, inputIdentifier) => {
-		const updatedExpenseForm = {
-			...this.state.expenseForm,
+		const updatedTimeForm = {
+			...this.state.timeForm,
 		};
 
 		const updatedFormElement = {
-			...updatedExpenseForm[inputIdentifier],
+			...updatedTimeForm[inputIdentifier],
 		};
 		updatedFormElement.value = event.target.value;
-		updatedExpenseForm[inputIdentifier] = updatedFormElement;
+		updatedTimeForm[inputIdentifier] = updatedFormElement;
 
 		let formIsValid = true;
-		for (let inputIdentifier in updatedExpenseForm) {
-			formIsValid = updatedExpenseForm[inputIdentifier].valid && formIsValid;
+		for (let inputIdentifier in updatedTimeForm) {
+			formIsValid = updatedTimeForm[inputIdentifier].valid && formIsValid;
 		}
-		this.setState({expenseForm: updatedExpenseForm, formIsValid: formIsValid});
+		this.setState({timeForm: updatedTimeForm, formIsValid: formIsValid});
 	};
 
 	render() {
 		const formElementsArray = [];
-		for (let key in this.state.expenseForm) {
+		for (let key in this.state.timeForm) {
 			formElementsArray.push({
 				id: key,
-				config: this.state.expenseForm[key],
+				config: this.state.timeForm[key],
 			});
 		}
 		let form = (
-			<form onSubmit={this.contactHandler}>
+			<form onSubmit={this.submitHandler}>
 				{formElementsArray.map(formElement => (
 					<Input
 						key={formElement.id}
