@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
 	const Contact = sequelize.define("contact", {
-		contactId: {
+		id: {
 			type: Sequelize.INTEGER,
 			autoIncrement: true,
 			allowNull: false,

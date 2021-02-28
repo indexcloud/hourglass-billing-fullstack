@@ -13,6 +13,7 @@ const session = require("express-session");
 const authRoutes = require("./routes/auth");
 const contactRoutes = require("./routes/contact");
 const matterRoutes = require("./routes/matter");
+const activitisRoutes = require("./routes/activities");
 
 // Express BodyParser
 app.use(express.json()); // request body has been parsed
@@ -39,6 +40,7 @@ require("./config/passport.js")(passport, db.user);
 app.use(authRoutes);
 app.use(contactRoutes);
 app.use(matterRoutes);
+app.use("/activities", activitisRoutes);
 
 // All other GET requests not handled before will return our React app
 app.get("*", (req, res) => {

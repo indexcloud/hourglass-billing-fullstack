@@ -3,9 +3,9 @@ const Matter = db.matter;
 
 exports.getMatters = (req, res, next) => {
 	Matter.findAll()
-		.then(result => {
-			console.log(result);
-			res.send(result);
+		.then(matters => {
+			console.log(matters);
+			res.send(matters);
 		})
 		.catch(err => console.log(err));
 };
