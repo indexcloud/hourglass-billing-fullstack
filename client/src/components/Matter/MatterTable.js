@@ -19,17 +19,13 @@ class MatterTable extends React.Component {
 	}
 
 	render() {
-		console.log(this.state.matters);
-
-		let matterBody = this.state.matters.map((matter, index) => {
+		let tableBody = this.state.matters.map((matter, index) => {
 			return (
 				<tr key={index}>
-					<td>{matter.matterId}</td>
-					{/* {Array.from({length: 12}).map((_, index) => (
-						<td key={index}>{matter.description}</td>
-					))} */}
+					<td>{matter.id}</td>
 					<td>{matter.description}</td>
 					<td>{matter.practiceArea}</td>
+					<td>{matter.clientId}</td>
 				</tr>
 			);
 		});
@@ -39,32 +35,13 @@ class MatterTable extends React.Component {
 				<thead>
 					<tr>
 						<th>Matter Id</th>
-						{Array.from({length: 12}).map((_, index) => (
-							<th key={index}>Table heading</th>
-						))}
+						<th>Matter</th>
+						<th>Description</th>
+						<th>Practice Area</th>
+						<th>Client</th>
 					</tr>
 				</thead>
-				<tbody>
-					{/* <tr>
-						<td>1</td>
-						{Array.from({length: 12}).map((_, index) => (
-							<td key={index}>Table cell {index}</td>
-						))}
-					</tr>
-					<tr>
-						<td>2</td>
-						{Array.from({length: 12}).map((_, index) => (
-							<td key={index}>Table cell {index}</td>
-						))}
-					</tr>
-					<tr>
-						<td>3</td>
-						{Array.from({length: 12}).map((_, index) => (
-							<td key={index}>Table cell {index}</td>
-						))}
-					</tr> */}
-					{matterBody}
-				</tbody>
+				<tbody>{tableBody}</tbody>
 			</Table>
 		);
 	}

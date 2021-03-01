@@ -19,7 +19,6 @@ class Contacts extends React.Component {
 				<p>Path = contacts/new?type=company</p> */}
 				<button onClick={this.newContactHandler}>New Contact</button>
 				<button onClick={this.newContactCancelledHandler}>Cancel</button>
-				<p>Select, Actions, Contact Id, Type, Name, Phone, Email, Address</p>
 				<ContactTable />
 				<Route path={this.props.match.path + "/new"} component={Contact} />
 			</div>

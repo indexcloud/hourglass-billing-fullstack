@@ -19,13 +19,10 @@ class ContactTable extends React.Component {
 	}
 
 	render() {
-		let contactBody = this.state.contacts.map((contact, index) => {
+		let tableBody = this.state.contacts.map((contact, index) => {
 			return (
 				<tr key={index}>
-					<td>{contact.contactId}</td>
-					{/* {Array.from({length: 12}).map((_, index) => (
-						<td key={index}>{contact.description}</td>
-					))} */}
+					<td>{contact.id}</td>
 					<td>{contact.firstName}</td>
 					<td>{contact.lastName}</td>
 					<td>{contact.company}</td>
@@ -43,32 +40,17 @@ class ContactTable extends React.Component {
 				<thead>
 					<tr>
 						<th>Client Id</th>
-						{Array.from({length: 12}).map((_, index) => (
-							<th key={index}>Table heading</th>
-						))}
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Company</th>
+						<th>Email</th>
+						<th>Phone Number</th>
+						<th>Street</th>
+						<th>Zip Code</th>
+						<th>Country</th>
 					</tr>
 				</thead>
-				<tbody>
-					{/* <tr>
-						<td>1</td>
-						{Array.from({length: 12}).map((_, index) => (
-							<td key={index}>Table cell {index}</td>
-						))}
-					</tr>
-					<tr>
-						<td>2</td>
-						{Array.from({length: 12}).map((_, index) => (
-							<td key={index}>Table cell {index}</td>
-						))}
-					</tr>
-					<tr>
-						<td>3</td>
-						{Array.from({length: 12}).map((_, index) => (
-							<td key={index}>Table cell {index}</td>
-						))}
-					</tr>  */}
-					{contactBody}
-				</tbody>
+				<tbody>{tableBody}</tbody>
 			</Table>
 		);
 	}

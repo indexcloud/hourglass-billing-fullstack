@@ -17,7 +17,6 @@ class Activities extends React.Component {
 			<div>
 				<button onClick={this.newTimeHandler}>New Time Entry</button>
 				<button onClick={this.newTimeCancelledHandler}>Cancel Time Entry</button>
-				<div>Duration, Time, Matter, Description, Date, Attorney, Rate</div>
 				<ActivityTable />
 				<Route path={this.props.match.path + "/new-time"} component={Time} />
 			</div>

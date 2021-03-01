@@ -22,7 +22,6 @@ class Matters extends React.Component {
 			<div>
 				<button onClick={this.newMatterHandler}>New Matter</button>
 				<button onClick={this.newMatterCancelledHandler}>Cancel</button>
-				<p>Select, Actions, Matter Id, Matter, Client, Responsible Attorney, Practice area, Open Date</p>
 				<MatterTable />
 				<Route path={this.props.match.path + "/new"} component={Matter} />
 			</div>

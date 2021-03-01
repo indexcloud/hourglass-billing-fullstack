@@ -57,6 +57,10 @@ class SignUp extends React.Component {
 		loading: false,
 	};
 
+	singinHandler = () => {
+		this.props.history.replace("/");
+	};
+
 	submitHandler = event => {
 		event.preventDefault();
 		this.setState({loading: true});
@@ -64,12 +68,11 @@ class SignUp extends React.Component {
 		for (let formElementIdentifier in this.state.signUpForm) {
 			formData[formElementIdentifier] = this.state.signUpForm[formElementIdentifier].value;
 		}
-		console.log(formData);
 		axios
 			.post("/signup", formData)
 			.then(res => {
+				console.log(res.data);
 				this.setState({loading: false});
-				<Redirect to={"/"} />;
 			})
 			.catch(err => {
 				this.setState({loading: false});

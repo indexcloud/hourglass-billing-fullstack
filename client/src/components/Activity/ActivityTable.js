@@ -20,13 +20,10 @@ class ActivityTable extends React.Component {
 
 	render() {
 		console.log(this.state.times);
-		let timesBody = this.state.times.map((time, index) => {
+		let tableBody = this.state.times.map((time, index) => {
 			return (
 				<tr key={index}>
 					<td>{time.id}</td>
-					{/* {Array.from({length: 12}).map((_, index) => (
-						<td key={index}>{matter.description}</td>
-					))} */}
 					<td>{time.date}</td>
 					<td>{time.description}</td>
 					<td>{time.quantity}</td>
@@ -41,32 +38,15 @@ class ActivityTable extends React.Component {
 				<thead>
 					<tr>
 						<th>Time Id</th>
-						{Array.from({length: 12}).map((_, index) => (
-							<th key={index}>Table heading</th>
-						))}
+						<th>Date</th>
+						<th>Description</th>
+						<th>Duration</th>
+						<th>Rate</th>
+						<th>Amount</th>
+						<th>Matter</th>
 					</tr>
 				</thead>
-				<tbody>
-					{/* <tr>
-						<td>1</td>
-						{Array.from({length: 12}).map((_, index) => (
-							<td key={index}>Table cell {index}</td>
-						))}
-					</tr>
-					<tr>
-						<td>2</td>
-						{Array.from({length: 12}).map((_, index) => (
-							<td key={index}>Table cell {index}</td>
-						))}
-					</tr>
-					<tr>
-						<td>3</td>
-						{Array.from({length: 12}).map((_, index) => (
-							<td key={index}>Table cell {index}</td>
-						))}
-					</tr> */}
-					{timesBody}
-				</tbody>
+				<tbody>{tableBody}</tbody>
 			</Table>
 		);
 	}

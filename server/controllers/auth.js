@@ -1,5 +1,5 @@
 exports.postSignUp = (req, res, next) => {
-	res.redirect("/signin");
+	res.send("Sign up succeed");
 };
 
 exports.postSignIn = (req, res, next) => {
@@ -8,8 +8,10 @@ exports.postSignIn = (req, res, next) => {
 };
 
 exports.getSignOut = (req, res, next) => {
-	isLoggedIn = false;
-	res.send(isLoggedIn);
+	req.session.destroy(err => {
+		isLoggedIn = false;
+		res.send(isLoggedIn);
+	});
 };
 
 exports.isLoggedIn = (req, res, next) => {

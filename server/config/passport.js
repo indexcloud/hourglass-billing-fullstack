@@ -3,7 +3,6 @@ const bcrypt = require("bcrypt");
 module.exports = (passport, user) => {
 	const User = user;
 	const LocalStrategy = require("passport-local").Strategy;
-	const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 
 	// Local Sign Up
 	passport.use(
@@ -27,10 +26,8 @@ module.exports = (passport, user) => {
 					},
 				}).then(user => {
 					if (user) {
-						req.flash("error", "E-mail exists already, please pick a different one.");
 						return done(null, false);
 					} else if (password !== confirmPassword) {
-						req.flash("error", "Password and Confirm Password does not match.");
 						return done(null, false);
 					} else {
 						const userPassword = generateHash(password);
@@ -43,6 +40,7 @@ module.exports = (passport, user) => {
 								return done(null, false);
 							}
 							if (newUser) {
+								console.log("User created");
 								return done(null, newUser);
 							}
 						});
@@ -79,26 +77,20 @@ module.exports = (passport, user) => {
 			},
 
 			function (req, username, password, done) {
-				const User = user;
-				console.log(req.body);
-				const newUsername = req.body.email;
-				const newPassword = req.body.password;
-				const isValidPassword = (userpass, newPassword) => {
-					return bcrypt.compareSync(newPassword, userpass);
+				const isValidPassword = (userpass, password) => {
+					return bcrypt.compareSync(password, userpass);
 				};
 
 				User.findOne({
 					where: {
-						email: newUsername,
+						email: username,
 					},
 				})
 					.then(user => {
 						if (!user) {
-							req.flash("error", "Invalid email or password.");
 							return done(null, false);
 						}
 						if (!isValidPassword(user.password, password)) {
-							req.flash("error", "Invalid email or password.");
 							return done(null, false);
 						}
 

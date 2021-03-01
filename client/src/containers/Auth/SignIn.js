@@ -41,6 +41,7 @@ class SignUp extends React.Component {
 		},
 		formIsValid: false,
 		loading: false,
+		isLoggedIn: false,
 	};
 
 	submitHandler = event => {
@@ -55,7 +56,7 @@ class SignUp extends React.Component {
 			.post("/signin", formData)
 			.then(res => {
 				console.log(res.data);
-				this.setState({loading: false});
+				this.setState({isLoggedIn: res.data});
 				// this.props.history.push("/signin");
 			})
 			.catch(err => {
@@ -82,6 +83,11 @@ class SignUp extends React.Component {
 	};
 
 	render() {
+		const signInRedirect = this.state.isLoggedIn;
+		if (signInRedirect) {
+			return <Redirect to="/matters" />;
+		}
+
 		const formElementsArray = [];
 		for (let key in this.state.contactForm) {
 			formElementsArray.push({

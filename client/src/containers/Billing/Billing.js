@@ -38,7 +38,6 @@ class Billing extends React.Component {
 				<Select />
 				<button onClick={this.newInvoiceHandler}>New Invoice</button>
 				<button onClick={this.newInvoiceCancelledHandler}>Cancel New Invoice</button>
-				<p>Select, Actions, Status, Due, Invoice Id, Client, Issue Date, Balance, Matter(s)</p>
 				<BillTable />
 				<Route
 					path={this.props.match.path + "/new"}
