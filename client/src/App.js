@@ -10,7 +10,7 @@ import Contacts from "./containers/Contacts/Contacts";
 import Activities from "./containers/Activities/Activities";
 import Billing from "./containers/Billing/Billing";
 import Reports from "./containers/Reports/Reports";
-import Settings from "./containers/Settings/Settings";
+// import Settings from "./containers/Settings/Settings";
 
 class App extends React.Component {
 	state = {
@@ -30,7 +30,7 @@ class App extends React.Component {
 						<Route path="/activities" component={Activities} />
 						<Route path="/billing" component={Billing} />
 						<Route path="/reports" component={Reports} />
-						<Route path="/settings" component={Settings} />
+						{/* <Route path="/settings" component={Settings} /> */}
 						<Route path="/signout">
 							<Redirect to="/" />
 						</Route>

@@ -11,6 +11,7 @@ module.exports = (sequelize, Sequelize) => {
 		quantity: Sequelize.DOUBLE,
 		rate: Sequelize.DOUBLE,
 		amount: Sequelize.DOUBLE,
+		matterId: Sequelize.INTEGER,
 	});
 	return Time;
 };

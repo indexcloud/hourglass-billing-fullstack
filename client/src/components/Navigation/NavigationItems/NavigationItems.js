@@ -11,7 +11,7 @@ const navigationItems = () => (
 		<NavigationItem link="/activities">Activities</NavigationItem>
 		<NavigationItem link="/billing">Billing</NavigationItem>
 		<NavigationItem link="/reports">Reports</NavigationItem>
-		<NavigationItem link="/settings">Settings</NavigationItem>
+		{/* <NavigationItem link="/settings">Settings</NavigationItem> */}
 		<NavigationItem link="/signout">Sign Out</NavigationItem>
 	</ul>
 );
