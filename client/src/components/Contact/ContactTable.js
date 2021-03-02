@@ -1,25 +1,9 @@
 import React from "react";
 import {Table} from "react-bootstrap";
-import axios from "axios";
 
 class ContactTable extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			contacts: [],
-		};
-	}
-
-	componentDidMount() {
-		console.log("Contacts Working");
-		axios.get("/contacts").then(res => {
-			console.log(res.data);
-			this.setState({contacts: res.data});
-		});
-	}
-
 	render() {
-		let tableBody = this.state.contacts.map((contact, index) => {
+		let tableBody = this.props.contacts.map((contact, index) => {
 			return (
 				<tr key={index}>
 					<td>{contact.id}</td>

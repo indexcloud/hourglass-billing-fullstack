@@ -1,19 +1,49 @@
 import React from "react";
 import classes from "./NavigationItems.module.css";
-import NavigationItem from "./NavigationItem/NavigationItem";
+import {NavLink} from "react-router-dom";
 
-const navigationItems = () => (
-	<ul className={classes.NavigationItems}>
-		<NavigationItem link="/matters" exact>
-			Matters
-		</NavigationItem>
-		<NavigationItem link="/contacts">Contacts</NavigationItem>
-		<NavigationItem link="/activities">Activities</NavigationItem>
-		<NavigationItem link="/billing">Billing</NavigationItem>
-		<NavigationItem link="/reports">Reports</NavigationItem>
-		{/* <NavigationItem link="/settings">Settings</NavigationItem> */}
-		<NavigationItem link="/signout">Sign Out</NavigationItem>
-	</ul>
-);
+class NavigationItems extends React.Component {
+	render() {
+		return (
+			<ul className={classes.NavigationItems}>
+				<li className={classes.NavigationItem}>
+					<NavLink to="/matters" activeClassName={classes.active}>
+						Matters
+					</NavLink>
+				</li>
+				<li className={classes.NavigationItem}>
+					<NavLink to="/contacts" activeClassName={classes.active}>
+						Contacts
+					</NavLink>
+				</li>
+				<li className={classes.NavigationItem}>
+					<NavLink to="/activities" activeClassName={classes.active}>
+						Activities
+					</NavLink>
+				</li>
+				<li className={classes.NavigationItem}>
+					<NavLink to="/billing" activeClassName={classes.active}>
+						Billing
+					</NavLink>
+				</li>
+				<li className={classes.NavigationItem}>
+					<NavLink to="/reports" activeClassName={classes.active}>
+						Reports
+					</NavLink>
+				</li>
+				{/* <li className={classes.NavigationItem}>
+					<NavLink to="/settings" activeClassName={classes.active}>
+						Settings
+					</NavLink>
+				</li> */}
+				<li className={classes.NavigationItem}>
+					<NavLink to="/signout" activeClassName={classes.active}>
+						Sign Out
+					</NavLink>
+				</li>
+			</ul>
+		);
+	}
+}
 
-export default navigationItems;
+export default NavigationItems;

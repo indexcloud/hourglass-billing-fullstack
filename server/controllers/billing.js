@@ -1,15 +1,16 @@
 const db = require("../models");
 const Matter = db.matter;
 
-exports.getMatters = (req, res, next) => {
+exports.getInvoices = (req, res, next) => {
 	Matter.findAll()
 		.then(matters => {
+			console.log(matters);
 			res.send(matters);
 		})
 		.catch(err => console.log(err));
 };
 
-exports.postAddMatter = (req, res, next) => {
+exports.postAddInvoice = (req, res, next) => {
 	const matter = req.body.matter;
 	const description = req.body.description;
 	const practiceArea = req.body.practiceArea;

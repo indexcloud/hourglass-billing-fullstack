@@ -3,23 +3,8 @@ import {Table} from "react-bootstrap";
 import axios from "axios";
 
 class MatterTable extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			matters: [],
-		};
-	}
-
-	componentDidMount() {
-		console.log("Matters Working");
-		axios.get("/matters").then(res => {
-			console.log(res.data);
-			this.setState({matters: res.data});
-		});
-	}
-
 	render() {
-		let tableBody = this.state.matters.map((matter, index) => {
+		let tableBody = this.props.matters.map((matter, index) => {
 			return (
 				<tr key={index}>
 					<td>{matter.id}</td>

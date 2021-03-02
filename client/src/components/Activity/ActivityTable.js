@@ -1,26 +1,9 @@
 import React from "react";
 import {Table} from "react-bootstrap";
-import axios from "axios";
 
 class ActivityTable extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			times: [],
-		};
-	}
-
-	componentDidMount() {
-		console.log("Times received");
-		axios.get("/activities/times").then(res => {
-			console.log(res.data);
-			this.setState({times: res.data});
-		});
-	}
-
 	render() {
-		console.log(this.state.times);
-		let tableBody = this.state.times.map((time, index) => {
+		let tableBody = this.props.times.map((time, index) => {
 			return (
 				<tr key={index}>
 					<td>{time.id}</td>

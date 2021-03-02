@@ -60,6 +60,7 @@ class SignUp extends React.Component {
 				// this.props.history.push("/signin");
 			})
 			.catch(err => {
+				console.log(err);
 				this.setState({loading: false});
 			});
 	};
@@ -113,7 +114,9 @@ class SignUp extends React.Component {
 
 				{/* <Button variant="success">Submit</Button> */}
 
-				<button>Submit</button>
+				<Button type="submit" variant="success">
+					Submit
+				</Button>
 			</form>
 		);
 
