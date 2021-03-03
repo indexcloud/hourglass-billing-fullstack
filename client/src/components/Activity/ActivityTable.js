@@ -10,8 +10,7 @@ class ActivityTable extends React.Component {
 					<td>{time.date}</td>
 					<td>{time.description}</td>
 					<td>{time.quantity}</td>
-					<td>{time.rate}</td>
-					<td>{time.amount}</td>
+					<td>$ {time.rate}</td>
 					<td>{time.matterId}</td>
 				</tr>
 			);
@@ -26,7 +25,6 @@ class ActivityTable extends React.Component {
 						<th>Description</th>
 						<th>Duration</th>
 						<th>Rate</th>
-						<th>Amount</th>
 						<th>Matter Id</th>
 					</tr>
 				</thead>

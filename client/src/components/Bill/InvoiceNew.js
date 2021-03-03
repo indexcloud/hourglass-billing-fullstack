@@ -13,7 +13,8 @@ class Invoice extends React.Component {
 		super(props);
 		this.state = {
 			matters: [],
-			matter: "",
+			times: [],
+			matterId: "",
 			invoiceForm: {
 				id: {
 					elementType: "input",
@@ -77,26 +78,37 @@ class Invoice extends React.Component {
 		axios
 			.get("/matters")
 			.then(res => {
+				console.log(res.data);
 				this.setState({matters: res.data});
 			})
 			.catch(err => console.log(err));
+
+		axios
+			.get("/activities/times")
+			.then(res => {
+				console.log(res.data);
+				this.setState({times: res.data});
+			})
+			.catch(err => {
+				console.log(err);
+			});
 	};
 
-	matterHandler = event => {
+	invoiceHandler = event => {
 		event.preventDefault();
 		this.setState({loading: true});
 		const formData = {};
-		for (let formElementIdentifier in this.state.matterForm) {
-			formData[formElementIdentifier] = this.state.matterForm[formElementIdentifier].value;
+		for (let formElementIdentifier in this.state.invoiceForm) {
+			formData[formElementIdentifier] = this.state.invoiceForm[formElementIdentifier].value;
 		}
 
-		formData.clientId = this.state.clientId;
+		formData.matterId = this.state.matterId;
 
 		axios
-			.post("/matters", formData)
+			.post("/billing", formData)
 			.then(res => {
 				this.setState({loading: false});
-				this.props.history.push("/matters");
+				this.props.history.push("/billing");
 			})
 			.catch(err => {
 				this.setState({loading: false});
@@ -105,27 +117,26 @@ class Invoice extends React.Component {
 
 	selectChangeHandler = selectedOption => {
 		console.log(selectedOption.value);
-		axios.get("/times/");
 
-		this.setState({clientId: selectedOption.value});
+		this.setState({matterId: selectedOption.value});
 	};
 
 	inputChangedHandler = (event, inputIdentifier) => {
-		const updatedMatterForm = {
-			...this.state.matterForm,
+		const updatedInvoiceForm = {
+			...this.state.invoiceForm,
 		};
 
 		const updatedFormElement = {
-			...updatedMatterForm[inputIdentifier],
+			...updatedInvoiceForm[inputIdentifier],
 		};
 		updatedFormElement.value = event.target.value;
-		updatedMatterForm[inputIdentifier] = updatedFormElement;
+		updatedInvoiceForm[inputIdentifier] = updatedFormElement;
 
 		let formIsValid = true;
-		for (let inputIdentifier in updatedMatterForm) {
-			formIsValid = updatedMatterForm[inputIdentifier].valid && formIsValid;
+		for (let inputIdentifier in updatedInvoiceForm) {
+			formIsValid = updatedInvoiceForm[inputIdentifier].valid && formIsValid;
 		}
-		this.setState({matterForm: updatedMatterForm, formIsValid: formIsValid});
+		this.setState({InvoiceForm: updatedInvoiceForm, formIsValid: formIsValid});
 	};
 
 	render() {
@@ -144,6 +155,18 @@ class Invoice extends React.Component {
 				options: matters,
 			},
 		];
+
+		let matterTime = [];
+
+		let timeTotal = 0;
+
+		for (let time of this.state.times) {
+			if (time.matterId == this.state.matterId) {
+				time.subtotal = time.quantity * time.rate;
+				timeTotal = timeTotal + time.subtotal;
+				matterTime.push(time);
+			}
+		}
 
 		return (
 			<form style={{padding: 20}} onSubmit={this.invoiceHandler}>
@@ -181,37 +204,20 @@ class Invoice extends React.Component {
 				<Row style={{marginTop: 48}}>
 					<Col span={8}>
 						<h3>
-							Matter: <Select onChange={event => this.selectChangeHandler(event)} options={options} />
+							Bill to Matter:{" "}
+							<Select onChange={event => this.selectChangeHandler(event)} options={options} />
 						</h3>
 					</Col>
 				</Row>
 
 				<Row style={{marginTop: 48}}>
-					<Table
-						dataSource={[
-							{
-								id: 1,
-								name: "Accommodation (Single Occupancy)",
-								description: "Accommodation",
-								rate: 1599,
-								quantity: 1,
-							},
-							{
-								id: 1,
-								name: "Accommodation (Single Occupancy)",
-								description: "Accommodation",
-								rate: 1599,
-								quantity: 1,
-							},
-						]}
-						pagination={false}
-					>
+					<Table dataSource={matterTime} pagination={false}>
 						<Table.Column title="Service" />
-						<Table.Column title="Date" dataIndex="name" />
+						<Table.Column title="Date" dataIndex="date" />
 						<Table.Column title="Description" dataIndex="description" />
 						<Table.Column title="Duration" dataIndex="quantity" />
-						<Table.Column title="Hourly Rate" dataIndex="price" />
-						<Table.Column title="Subtotal" />
+						<Table.Column title="Hourly Rate" dataIndex="rate" />
+						<Table.Column title="Subtotal" dataIndex="subtotal" />
 					</Table>
 				</Row>
 
@@ -220,7 +226,7 @@ class Invoice extends React.Component {
 						<table>
 							<tr>
 								<th>Bill Total :</th>
-								<td>$ 1599</td>
+								<td>$ {timeTotal}</td>
 							</tr>
 						</table>
 					</Col>

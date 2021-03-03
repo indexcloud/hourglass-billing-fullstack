@@ -85,7 +85,7 @@ class Time extends React.Component {
 			formData[formElementIdentifier] = this.state.timeForm[formElementIdentifier].value;
 		}
 
-		formData.matter = this.state.matter;
+		formData.matterId = this.state.matterId;
 
 		axios
 			.post("/activities/new-time", formData)

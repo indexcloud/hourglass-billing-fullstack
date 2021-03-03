@@ -9,12 +9,11 @@ class ContactTable extends React.Component {
 					<td>{contact.id}</td>
 					<td>{contact.firstName}</td>
 					<td>{contact.lastName}</td>
-					<td>{contact.company}</td>
+
 					<td>{contact.email}</td>
 					<td>{contact.phone}</td>
 					<td>{contact.street}</td>
 					<td>{contact.zipCode}</td>
-					<td>{contact.country}</td>
 				</tr>
 			);
 		});
@@ -26,12 +25,11 @@ class ContactTable extends React.Component {
 						<th>Client Id</th>
 						<th>First Name</th>
 						<th>Last Name</th>
-						<th>Company</th>
+
 						<th>Email</th>
 						<th>Phone Number</th>
 						<th>Street</th>
 						<th>Zip Code</th>
-						<th>Country</th>
 					</tr>
 				</thead>
 				<tbody>{tableBody}</tbody>

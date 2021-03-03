@@ -4,6 +4,8 @@ import axios from "axios";
 
 class BarChart extends React.Component {
 	render() {
+		console.log(this.props.times);
+
 		const data = {
 			labels: this.props.times.map(time => time.date),
 			datasets: [
