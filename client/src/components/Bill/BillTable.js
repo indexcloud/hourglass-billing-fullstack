@@ -3,6 +3,19 @@ import {Table} from "react-bootstrap";
 
 class BillTable extends React.Component {
 	render() {
+		let tableBody = this.props.invoices.map((invoice, index) => {
+			return (
+				<tr key={index}>
+					<td>{invoice.id}</td>
+					<td>{invoice.date}</td>
+					<td>{invoice.description}</td>
+					<td>{invoice.quantity}</td>
+					<td>{invoice.rate}</td>
+					<td>{invoice.amount}</td>
+				</tr>
+			);
+		});
+
 		return (
 			<Table responsive>
 				<thead>
@@ -15,26 +28,7 @@ class BillTable extends React.Component {
 						<th>Matter</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-						<td>1</td>
-						{Array.from({length: 5}).map((_, index) => (
-							<td key={index}>Table cell {index}</td>
-						))}
-					</tr>
-					<tr>
-						<td>2</td>
-						{Array.from({length: 5}).map((_, index) => (
-							<td key={index}>Table cell {index}</td>
-						))}
-					</tr>
-					<tr>
-						<td>3</td>
-						{Array.from({length: 5}).map((_, index) => (
-							<td key={index}>Table cell {index}</td>
-						))}
-					</tr>
-				</tbody>
+				<tbody>{tableBody}</tbody>
 			</Table>
 		);
 	}

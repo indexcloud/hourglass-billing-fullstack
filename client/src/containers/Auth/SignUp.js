@@ -1,6 +1,4 @@
 import React from "react";
-
-import {Redirect, NavLink} from "react-router-dom";
 import {Button} from "react-bootstrap";
 
 import classes from "./Auth.module.css";
@@ -73,6 +71,7 @@ class SignUp extends React.Component {
 			.then(res => {
 				console.log(res.data);
 				this.setState({loading: false});
+				this.props.history.push("/");
 			})
 			.catch(err => {
 				this.setState({loading: false});

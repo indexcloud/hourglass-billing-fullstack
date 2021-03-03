@@ -33,19 +33,6 @@ class Contact extends React.Component {
 				valid: false,
 				touched: false,
 			},
-			company: {
-				elementType: "input",
-				elementConfig: {
-					type: "text",
-					placeholder: "Company",
-				},
-				value: "",
-				validation: {
-					required: true,
-				},
-				valid: false,
-				touched: false,
-			},
 			email: {
 				elementType: "input",
 				elementConfig: {
@@ -112,19 +99,6 @@ class Contact extends React.Component {
 					minLength: 5,
 					maxLength: 5,
 					isNumeric: true,
-				},
-				valid: false,
-				touched: false,
-			},
-			country: {
-				elementType: "input",
-				elementConfig: {
-					type: "text",
-					placeholder: "Country",
-				},
-				value: "",
-				validation: {
-					required: true,
 				},
 				valid: false,
 				touched: false,

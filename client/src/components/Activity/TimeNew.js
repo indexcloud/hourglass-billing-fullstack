@@ -1,95 +1,80 @@
 import React from "react";
+import Select from "react-select";
 
 import classes from "./Time.module.css";
 import axios from "axios";
-import Input from "../../UI/Input/Input";
+import Input from "../UI/Input/Input";
 
 class Time extends React.Component {
-	state = {
-		timeForm: {
-			matter: {
-				elementType: "input",
-				elementConfig: {
-					type: "text",
-					placeholder: "Matter",
+	constructor(props) {
+		super(props);
+		this.state = {
+			matters: "",
+			matterId: "",
+			timeForm: {
+				date: {
+					elementType: "input",
+					elementConfig: {
+						type: "date",
+						placeholder: "Date",
+					},
+					value: "",
+					validation: {
+						required: true,
+					},
+					valid: false,
+					touched: false,
 				},
-				value: "",
-				validation: {
-					required: true,
-					isEmail: true,
+				description: {
+					elementType: "textarea",
+					elementConfig: {
+						type: "text",
+						placeholder: "Description",
+					},
+					value: "",
+					validation: {
+						required: true,
+					},
+					valid: false,
+					touched: false,
 				},
-				valid: false,
-				touched: false,
+				quantity: {
+					elementType: "input",
+					elementConfig: {
+						type: "number",
+						placeholder: "Duration",
+					},
+					value: "",
+					validation: {
+						required: true,
+					},
+					valid: false,
+					touched: false,
+				},
+				rate: {
+					elementType: "input",
+					elementConfig: {
+						type: "number",
+						placeholder: "Rate",
+					},
+					value: "",
+					validation: {
+						required: true,
+						isNumeric: true,
+					},
+					valid: false,
+					touched: false,
+				},
 			},
-			date: {
-				elementType: "input",
-				elementConfig: {
-					type: "date",
-					placeholder: "Date",
-				},
-				value: "",
-				validation: {
-					required: true,
-				},
-				valid: false,
-				touched: false,
-			},
-			description: {
-				elementType: "textarea",
-				elementConfig: {
-					type: "text",
-					placeholder: "Description",
-				},
-				value: "",
-				validation: {
-					required: true,
-				},
-				valid: false,
-				touched: false,
-			},
-			quantity: {
-				elementType: "input",
-				elementConfig: {
-					type: "number",
-					placeholder: "Duration",
-				},
-				value: "",
-				validation: {
-					required: true,
-				},
-				valid: false,
-				touched: false,
-			},
-			rate: {
-				elementType: "input",
-				elementConfig: {
-					type: "number",
-					placeholder: "Rate",
-				},
-				value: "",
-				validation: {
-					required: true,
-					isNumeric: true,
-				},
-				valid: false,
-				touched: false,
-			},
-			amount: {
-				elementType: "input",
-				elementConfig: {
-					type: "number",
-					placeholder: "Amount",
-				},
-				value: "",
-				validation: {
-					required: true,
-				},
-				valid: false,
-				touched: false,
-			},
-		},
-		formIsValid: false,
-		loading: false,
+			formIsValid: false,
+			loading: false,
+		};
+	}
+
+	componentDidMount = () => {
+		axios.get("/matters").then(res => {
+			this.setState({matters: res.data});
+		});
 	};
 
 	submitHandler = event => {
@@ -99,6 +84,9 @@ class Time extends React.Component {
 		for (let formElementIdentifier in this.state.timeForm) {
 			formData[formElementIdentifier] = this.state.timeForm[formElementIdentifier].value;
 		}
+
+		formData.matter = this.state.matter;
+
 		axios
 			.post("/activities/new-time", formData)
 			.then(res => {
@@ -108,6 +96,11 @@ class Time extends React.Component {
 			.catch(err => {
 				this.setState({loading: false});
 			});
+	};
+
+	selectChangeHandler = selectedOption => {
+		console.log(selectedOption.value);
+		this.setState({matterId: selectedOption.value});
 	};
 
 	inputChangedHandler = (event, inputIdentifier) => {
@@ -129,6 +122,22 @@ class Time extends React.Component {
 	};
 
 	render() {
+		let matters = [];
+
+		for (let matter of this.state.matters) {
+			const ojbec = {};
+			ojbec.value = matter.id;
+			ojbec.label = matter.id + " " + matter.matter;
+			matters.push(ojbec);
+		}
+
+		const options = [
+			{
+				label: "Matter",
+				options: matters,
+			},
+		];
+
 		const formElementsArray = [];
 		for (let key in this.state.timeForm) {
 			formElementsArray.push({
@@ -138,6 +147,7 @@ class Time extends React.Component {
 		}
 		let form = (
 			<form onSubmit={this.submitHandler}>
+				<Select onChange={event => this.selectChangeHandler(event)} options={options} />
 				{formElementsArray.map(formElement => (
 					<Input
 						key={formElement.id}

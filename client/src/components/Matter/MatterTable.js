@@ -1,6 +1,5 @@
 import React from "react";
 import {Table} from "react-bootstrap";
-import axios from "axios";
 
 class MatterTable extends React.Component {
 	render() {
@@ -8,6 +7,7 @@ class MatterTable extends React.Component {
 			return (
 				<tr key={index}>
 					<td>{matter.id}</td>
+					<td>{matter.matter}</td>
 					<td>{matter.description}</td>
 					<td>{matter.practiceArea}</td>
 					<td>{matter.clientId}</td>
@@ -23,7 +23,7 @@ class MatterTable extends React.Component {
 						<th>Matter</th>
 						<th>Description</th>
 						<th>Practice Area</th>
-						<th>Client</th>
+						<th>Client Id</th>
 					</tr>
 				</thead>
 				<tbody>{tableBody}</tbody>

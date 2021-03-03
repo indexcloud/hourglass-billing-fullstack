@@ -4,9 +4,9 @@ const authController = require("../controllers/auth");
 const router = express.Router();
 
 router.get("/billing", billingController.getInvoices);
-// router.get("/matters", authController.isLoggedIn, billingController.getInvoices);
+// router.get("/billing", authController.isLoggedIn, billingController.getInvoices);
 
-router.post("/billing", billingController.postAddInvoice);
-// router.post("/matters", authController.isLoggedIn, billingController.postAddInvoice);
+router.post("/billing/", billingController.postAddInvoice);
+// router.post("/billing", authController.isLoggedIn, billingController.postAddInvoice);
 
 module.exports = router;

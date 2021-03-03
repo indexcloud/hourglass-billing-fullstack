@@ -2,7 +2,9 @@ const db = require("../models");
 const Contact = db.contact;
 
 exports.getContacts = (req, res, next) => {
-	Contact.findAll().then(contacts => res.send(contacts));
+	Contact.findAll()
+		.then(contacts => res.send(contacts))
+		.catch(err => console.log(err));
 };
 
 exports.postAddContact = (req, res, next) => {
@@ -14,7 +16,6 @@ exports.postAddContact = (req, res, next) => {
 	const street = req.body.street;
 	const city = req.body.city;
 	const zipCode = req.body.zipCode;
-	const country = req.body.country;
 
 	Contact.create({
 		firstName: firstName,
@@ -25,7 +26,6 @@ exports.postAddContact = (req, res, next) => {
 		street: street,
 		city: city,
 		zipCode: zipCode,
-		country: country,
 	})
 		.then(result => {
 			console.log("Created New Contact");

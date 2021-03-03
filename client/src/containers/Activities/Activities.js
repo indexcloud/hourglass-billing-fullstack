@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import {Route} from "react-router-dom";
-import Time from "../../components/Activity/Time/Time";
+import TimeNew from "../../components/Activity/TimeNew";
 import ActivityTable from "../../components/Activity/ActivityTable";
 
 class Activities extends React.Component {
@@ -13,10 +13,13 @@ class Activities extends React.Component {
 	}
 
 	getActivities = async () => {
-		await axios.get("/activities/times").then(res => {
-			console.log(res.data);
-			this.setState({times: res.data});
-		});
+		await axios
+			.get("/activities/times")
+			.then(res => {
+				console.log(res.data);
+				this.setState({times: res.data});
+			})
+			.catch(err => console.log(err));
 	};
 
 	newTimeCancelledHandler = () => {
@@ -34,7 +37,7 @@ class Activities extends React.Component {
 				<button onClick={this.newTimeHandler}>New Time Entry</button>
 				<button onClick={this.newTimeCancelledHandler}>Cancel Time Entry</button>
 				<ActivityTable times={this.state.times} />
-				<Route path={this.props.match.path + "/new-time"} component={Time} />
+				<Route path={this.props.match.path + "/new-time"} component={TimeNew} />
 			</div>
 		);
 	}

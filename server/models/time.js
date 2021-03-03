@@ -10,8 +10,7 @@ module.exports = (sequelize, Sequelize) => {
 		description: Sequelize.STRING,
 		quantity: Sequelize.DOUBLE,
 		rate: Sequelize.DOUBLE,
-		amount: Sequelize.DOUBLE,
-		matterId: Sequelize.INTEGER,
+		matterId: Sequelize.STRING,
 	});
 	return Time;
 };

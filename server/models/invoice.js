@@ -5,7 +5,10 @@ module.exports = (sequelize, Sequelize) => {
 			allowNull: false,
 			primaryKey: true,
 		},
-		status: Sequelize.STRING,
+		status: {
+			type: Sequelize.STRING,
+			defaultValue: "Unpaid",
+		},
 		invoiceDate: Sequelize.DATE,
 		dueDate: Sequelize.DATE,
 		balance: Sequelize.DOUBLE,

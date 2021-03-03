@@ -11,19 +11,18 @@ exports.getTimes = (req, res, next) => {
 };
 
 exports.postAddTime = (req, res, next) => {
-	const matterId = req.body.matterId;
 	const date = req.body.date;
 	const description = req.body.description;
 	const quantity = req.body.quantity;
 	const rate = req.body.rate;
-	const amount = req.body.amount;
+	const matterId = req.body.matterId;
+
 	Time.create({
-		matterId: matterId,
 		date: date,
 		description: description,
 		quantity: quantity,
 		rate: rate,
-		amount: amount,
+		matterId: matterId,
 	})
 		.then(result => {
 			console.log("Created New Time");

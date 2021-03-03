@@ -1,8 +1,17 @@
 import React from "react";
 import classes from "./NavigationItems.module.css";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 class NavigationItems extends React.Component {
+	postSignOut = async () => {
+		console.log("signout");
+		await axios
+			.get("/signout")
+			.then(res => console.log(res.data))
+			.catch(err => console.log(err));
+	};
+
 	render() {
 		return (
 			<ul className={classes.NavigationItems}>
@@ -36,11 +45,11 @@ class NavigationItems extends React.Component {
 						Settings
 					</NavLink>
 				</li> */}
-				<li className={classes.NavigationItem}>
-					<NavLink to="/signout" activeClassName={classes.active}>
+				{/* <li className={classes.NavigationItem}>
+					<NavLink to="/signout" activeClassName={classes.active} onClick={this.postSignOut}>
 						Sign Out
 					</NavLink>
-				</li>
+				</li> */}
 			</ul>
 		);
 	}

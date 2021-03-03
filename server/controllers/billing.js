@@ -22,7 +22,7 @@ exports.postAddInvoice = (req, res, next) => {
 		clientId: clientId,
 	})
 		.then(result => {
-			console.log("Created New Matter");
+			console.log("Created New Invoice");
 		})
 		.catch(err => console.log(err));
 };

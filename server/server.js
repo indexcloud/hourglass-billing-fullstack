@@ -48,8 +48,8 @@ app.get("*", (req, res) => {
 });
 
 db.sequelize
-	.sync()
-	// .sync({force: true})
+	// .sync()
+	.sync({force: true})
 	.then(result => {
 		console.log("Database looks fine");
 	})

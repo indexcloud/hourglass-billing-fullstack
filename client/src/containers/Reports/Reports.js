@@ -11,10 +11,13 @@ class Reports extends React.Component {
 	}
 
 	getTimes = async () => {
-		await axios.get("/activities/times").then(res => {
-			console.log(res.data);
-			this.setState({times: res.data});
-		});
+		await axios
+			.get("/activities/times")
+			.then(res => {
+				console.log(res.data);
+				this.setState({times: res.data});
+			})
+			.catch(err => console.log(err));
 	};
 
 	render() {

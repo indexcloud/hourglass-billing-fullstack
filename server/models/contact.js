@@ -8,11 +8,8 @@ module.exports = (sequelize, Sequelize) => {
 		},
 		firstName: Sequelize.STRING,
 		lastName: Sequelize.STRING,
-		company: Sequelize.STRING,
 		email: {
 			type: Sequelize.STRING,
-			unique: true,
-			allowNull: false,
 			validate: {
 				isEmail: true,
 			},
@@ -21,7 +18,6 @@ module.exports = (sequelize, Sequelize) => {
 		street: Sequelize.STRING,
 		city: Sequelize.STRING,
 		zipCode: Sequelize.STRING,
-		country: Sequelize.STRING,
 	});
 	return Contact;
 };

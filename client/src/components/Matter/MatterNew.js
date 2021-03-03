@@ -5,24 +5,6 @@ import classes from "./Matter.module.css";
 import axios from "axios";
 import Input from "../UI/Input/Input";
 
-const groupStyles = {
-	display: "flex",
-	alignItems: "center",
-	justifyContent: "space-between",
-};
-// const groupBadgeStyles = {
-// 	backgroundColor: "#EBECF0",
-// 	borderRadius: "2em",
-// 	color: "#172B4D",
-// 	display: "inline-block",
-// 	fontSize: 12,
-// 	fontWeight: "normal",
-// 	lineHeight: "1",
-// 	minWidth: 1,
-// 	padding: "0.16666666666667em 0.5em",
-// 	textAlign: "center",
-// };
-
 class Contact extends React.Component {
 	constructor(props) {
 		super(props);
@@ -34,7 +16,7 @@ class Contact extends React.Component {
 					elementType: "input",
 					elementConfig: {
 						type: "text",
-						placeholder: "Matter Number",
+						placeholder: "Matter Name",
 					},
 					value: "",
 					validation: {
@@ -76,9 +58,12 @@ class Contact extends React.Component {
 	}
 
 	componentDidMount = () => {
-		axios.get("/contacts").then(res => {
-			this.setState({contacts: res.data});
-		});
+		axios
+			.get("/contacts")
+			.then(res => {
+				this.setState({contacts: res.data});
+			})
+			.catch(err => console.log(err));
 	};
 
 	matterHandler = event => {
@@ -90,6 +75,7 @@ class Contact extends React.Component {
 		}
 
 		formData.clientId = this.state.clientId;
+
 		axios
 			.post("/matters", formData)
 			.then(res => {
@@ -99,6 +85,11 @@ class Contact extends React.Component {
 			.catch(err => {
 				this.setState({loading: false});
 			});
+	};
+
+	selectChangeHandler = selectedOption => {
+		console.log(selectedOption.value);
+		this.setState({clientId: selectedOption.value});
 	};
 
 	inputChangedHandler = (event, inputIdentifier) => {
@@ -119,65 +110,22 @@ class Contact extends React.Component {
 		this.setState({matterForm: updatedMatterForm, formIsValid: formIsValid});
 	};
 
-	handleChange = selectedOption => {
-		console.log(selectedOption.value);
-
-		// const updatedMatterForm = {
-		// 	...this.state,
-		// 	clientId: selectedOption.value,
-		// };
-
-		// const updatedFormElement = {
-		// 	...updatedMatterForm.clientId,
-		// };
-
-		// console.log(updatedFormElement);
-		// updatedFormElement.value = selectedOption.value;
-
-		this.setState({clientId: selectedOption.value});
-		// console.log(this.state.matterForm);
-	};
-
 	render() {
 		let persons = [];
-		let companies = [];
+
 		for (let contact of this.state.contacts) {
 			const ojbec = {};
-			ojbec.value = contact.contactId;
-			ojbec.label = contact.firstName + " " + contact.lastName;
+			ojbec.value = contact.id;
+			ojbec.label = contact.id + " " + contact.firstName + " " + contact.lastName;
 			persons.push(ojbec);
 		}
-		for (let contact of this.state.contacts) {
-			const ojbec = {};
-			ojbec.value = contact.contactId;
-			ojbec.label = contact.company;
-			companies.push(ojbec);
-		}
-		const groupedOptions = [
+
+		const options = [
 			{
 				label: "Person",
-				// options: [
-				// 	{value: "ocean", label: "Ocean"},
-				// 	{value: "blue", label: "Blue"},
-				// ],
 				options: persons,
 			},
-			{
-				label: "Company",
-				// options: [
-				// 	{value: "vanilla", label: "Vanilla"},
-				// 	{value: "chocolate", label: "Chocolate"},
-				// ],
-				options: companies,
-			},
 		];
-
-		const formatGroupLabel = data => (
-			<div style={groupStyles}>
-				<span>{data.label}</span>
-				{/* <span style={groupBadgeStyles}>{data.options.length}</span> */}
-			</div>
-		);
 
 		const formElementsArray = [];
 		for (let key in this.state.matterForm) {
@@ -187,15 +135,10 @@ class Contact extends React.Component {
 			});
 		}
 
-		// const selectedOption = this.state.matterForm.clientId;
-
 		let form = (
 			<form onSubmit={this.matterHandler}>
-				<Select
-					onChange={event => this.handleChange(event)}
-					options={groupedOptions}
-					formatGroupLabel={formatGroupLabel}
-				/>
+				<Select onChange={event => this.selectChangeHandler(event)} options={options} />
+
 				{formElementsArray.map(formElement => (
 					<Input
 						key={formElement.id}

@@ -1,23 +1,25 @@
 import React from "react";
 import axios from "axios";
 import {Route} from "react-router-dom";
-import Select from "react-select";
 import BillTable from "../../components/Bill/BillTable";
-import Invoice from "../../components/Invoice/Invoice";
+import InvoiceNew from "../../components/Bill/InvoiceNew";
 
 class Billing extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			matters: [],
 			invoices: [],
 		};
 	}
 
 	getInvoices = async () => {
-		await axios.get("/billing").then(res => {
-			this.setState({invoices: res.data});
-		});
+		await axios
+			.get("/invoices")
+			.then(res => {
+				console.log(res.data);
+				this.setState({invoices: res.data});
+			})
+			.catch(err => console.log(err));
 	};
 
 	newInvoiceCancelledHandler = () => {
@@ -31,15 +33,11 @@ class Billing extends React.Component {
 	render() {
 		return (
 			<div>
-				<Select />
 				<button onClick={this.getInvoices}>All Invoices</button>
 				<button onClick={this.newInvoiceHandler}>New Invoice</button>
 				<button onClick={this.newInvoiceCancelledHandler}>Cancel New Invoice</button>
-				<BillTable />
-				<Route
-					path={this.props.match.path + "/new"}
-					render={props => <Invoice matter={this.state.matter} {...props} />}
-				/>
+				<BillTable invoices={this.state.invoices} />
+				<Route path={this.props.match.path + "/new"} component={InvoiceNew} />
 			</div>
 		);
 	}

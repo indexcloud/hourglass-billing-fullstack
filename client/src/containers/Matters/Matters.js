@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import {Route} from "react-router-dom";
-import Matter from "../../components/Matter/Matter";
+import MatterNew from "../../components/Matter/MatterNew";
 import MatterTable from "../../components/Matter/MatterTable";
 
 class Matters extends React.Component {
@@ -13,10 +13,13 @@ class Matters extends React.Component {
 	}
 
 	getMatters = async () => {
-		await axios.get("/matters").then(res => {
-			console.log(res.data);
-			this.setState({matters: res.data});
-		});
+		await axios
+			.get("/matters")
+			.then(res => {
+				console.log(res.data);
+				this.setState({matters: res.data});
+			})
+			.catch(err => console.log(err));
 	};
 
 	newMatterCancelledHandler = () => {
@@ -34,7 +37,7 @@ class Matters extends React.Component {
 				<button onClick={this.newMatterHandler}>New Matter</button>
 				<button onClick={this.newMatterCancelledHandler}>Cancel</button>
 				<MatterTable matters={this.state.matters} />
-				<Route path={this.props.match.path + "/new"} component={Matter} />
+				<Route path={this.props.match.path + "/new"} component={MatterNew} />
 			</div>
 		);
 	}
