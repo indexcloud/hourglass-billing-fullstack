@@ -2,15 +2,15 @@ require("dotenv").config();
 const path = require("path");
 const express = require("express");
 
-// const cors = require("cors");
+const cors = require("cors");
 
 const app = express();
 const passport = require("passport");
 const session = require("express-session");
-// app.use(cors());
+app.use(cors());
 
 // Importing routes
-const authRoutes = require("./routes/auth");
+// const authRoutes = require("./routes/auth");
 const contactRoutes = require("./routes/contact");
 const matterRoutes = require("./routes/matter");
 const activitisRoutes = require("./routes/activities");
@@ -44,7 +44,7 @@ app.use("/activities", activitisRoutes);
 
 // All other GET requests not handled before will return our React app
 app.get("*", (req, res) => {
-	res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+	res.sendFile(path.resolve(__dirname, "/client/build", "index.html"));
 });
 
 db.sequelize
