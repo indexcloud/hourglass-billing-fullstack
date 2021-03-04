@@ -28,7 +28,7 @@ app.use(passport.session()); // persistent login sessions
 
 const db = require("./models");
 
-require("./config/passport.js")(passport, db.user);
+// require("./config/passport.js")(passport, db.user);
 
 // Passing local variables to Template Engine Render Pages
 // app.use((req, res, next) => {
@@ -37,7 +37,7 @@ require("./config/passport.js")(passport, db.user);
 // 	next();
 // });
 
-app.use(authRoutes);
+// app.use(authRoutes);
 app.use(contactRoutes);
 app.use(matterRoutes);
 app.use("/activities", activitisRoutes);
@@ -48,8 +48,8 @@ app.get("*", (req, res) => {
 });
 
 db.sequelize
-	.sync()
-	// .sync({force: true})
+	// .sync()
+	.sync({force: true})
 	.then(result => {
 		console.log("Database looks fine");
 	})

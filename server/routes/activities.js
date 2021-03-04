@@ -1,7 +1,6 @@
 const express = require("express");
 const activitiesController = require("../controllers/activities");
-const authController = require("../controllers/auth");
-const {route} = require("./contact");
+// const authController = require("../controllers/auth");
 const router = express.Router();
 
 router.get("/times", activitiesController.getTimes);

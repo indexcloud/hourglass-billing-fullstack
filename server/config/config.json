@@ -7,14 +7,14 @@
 		"dialect": "postgres"
 	},
 	"test": {
-		"username": "",
+		"username": "root",
 		"password": "null",
 		"database": "hourglass-billing",
 		"host": "127.0.0.1",
 		"dialect": "postgres"
 	},
 	"production": {
-		"username": "",
+		"username": "root",
 		"password": "null",
 		"database": "hourglass-billing",
 		"host": "127.0.0.1",
