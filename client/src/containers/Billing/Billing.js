@@ -33,7 +33,8 @@ class Billing extends React.Component {
 	render() {
 		return (
 			<div>
-				<button onClick={this.getInvoices}>All Invoices</button>
+				{/* <button onClick={this.getInvoices}>All Invoices</button> */}
+				<button>All Invoices</button>
 				<button onClick={this.newInvoiceHandler}>New Invoice</button>
 				<button onClick={this.newInvoiceCancelledHandler}>Cancel New Invoice</button>
 				<BillTable invoices={this.state.invoices} />
