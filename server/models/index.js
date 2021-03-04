@@ -35,7 +35,7 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 // Import models
-const User = require("./user")(sequelize, Sequelize);
+// const User = require("./user")(sequelize, Sequelize);
 const Contact = require("./contact")(sequelize, Sequelize);
 const Matter = require("./matter")(sequelize, Sequelize);
 const Invoice = require("./invoice")(sequelize, Sequelize);
@@ -52,7 +52,7 @@ const Time = require("./time")(sequelize, Sequelize);
 // Invoice.belongsTo(Matter);
 
 // Table list
-db.user = User;
+// db.user = User;
 db.contact = Contact;
 db.matter = Matter;
 db.invoice = Invoice;

@@ -2,15 +2,15 @@ require("dotenv").config();
 const path = require("path");
 const express = require("express");
 
-// const cors = require("cors");
+const cors = require("cors");
 
 const app = express();
 const passport = require("passport");
 const session = require("express-session");
-// app.use(cors());
+app.use(cors());
 
 // Importing routes
-const authRoutes = require("./routes/auth");
+// const authRoutes = require("./routes/auth");
 const contactRoutes = require("./routes/contact");
 const matterRoutes = require("./routes/matter");
 const activitisRoutes = require("./routes/activities");
@@ -28,7 +28,7 @@ app.use(passport.session()); // persistent login sessions
 
 const db = require("./models");
 
-require("./config/passport.js")(passport, db.user);
+// require("./config/passport.js")(passport, db.user);
 
 // Passing local variables to Template Engine Render Pages
 // app.use((req, res, next) => {
@@ -37,7 +37,7 @@ require("./config/passport.js")(passport, db.user);
 // 	next();
 // });
 
-app.use(authRoutes);
+// app.use(authRoutes);
 app.use(contactRoutes);
 app.use(matterRoutes);
 app.use("/activities", activitisRoutes);
