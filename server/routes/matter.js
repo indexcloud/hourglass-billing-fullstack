@@ -1,6 +1,6 @@
 const express = require("express");
 const matterController = require("../controllers/matter");
-// const authController = require("../controllers/auth");
+const authController = require("../controllers/auth");
 const router = express.Router();
 
 router.get("/matters", matterController.getMatters);

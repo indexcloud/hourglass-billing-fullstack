@@ -2,12 +2,12 @@
 	"name": "hourglass-billing-fullstack",
 	"version": "1.0.0",
 	"description": "",
-	"main": "server.js",
+	"main": "index.js",
 	"engines": {
 		"node": "12.18.3"
 	},
 	"scripts": {
-		"start": "node server.js",
+		"start": "node server/server.js",
 		"build": "cd client && npm install && npm run build"
 	},
 	"keywords": [],
