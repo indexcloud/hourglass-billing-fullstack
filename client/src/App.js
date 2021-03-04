@@ -1,10 +1,10 @@
 import React from "react";
 import "./App.css";
 
-import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
+import {Switch, Route, Redirect} from "react-router-dom";
 import Layout from "./hoc/Layout/Layout";
-import SignIn from "./containers/Auth/SignIn";
-import SignUp from "./containers/Auth/SignUp";
+// import SignIn from "./containers/Auth/SignIn";
+// import SignUp from "./containers/Auth/SignUp";
 import Matters from "./containers/Matters/Matters";
 import Contacts from "./containers/Contacts/Contacts";
 import Activities from "./containers/Activities/Activities";
@@ -21,23 +21,21 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className="App">
-				<BrowserRouter>
-					<Layout>
-						<Switch>
-							<Route path="/" exact component={Matters} />
-							{/* <Route path="/signup" component={SignUp} /> */}
-							<Route path="/matters" component={Matters} />
-							<Route path="/contacts" component={Contacts} />
-							<Route path="/activities" component={Activities} />
-							<Route path="/billing" component={Billing} />
-							<Route path="/reports" component={Reports} />
-							{/* <Route path="/settings" component={Settings} /> */}
-							<Route path="/signout">
-								<Redirect to="/" />
-							</Route>
-						</Switch>
-					</Layout>
-				</BrowserRouter>
+				<Layout>
+					<Switch>
+						<Route path="/" exact component={Matters} />
+						{/* <Route path="/signup" component={SignUp} /> */}
+						<Route path="/contacts" component={Contacts} />
+						<Route path="/matters" component={Matters} />
+						<Route path="/activities" component={Activities} />
+						<Route path="/billing" component={Billing} />
+						<Route path="/reports" component={Reports} />
+						{/* <Route path="/settings" component={Settings} /> */}
+						<Route path="/signout">
+							<Redirect to="/" />
+						</Route>
+					</Switch>
+				</Layout>
 			</div>
 		);
 	}

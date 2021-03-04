@@ -16,15 +16,16 @@ class NavigationItems extends React.Component {
 		return (
 			<ul className={classes.NavigationItems}>
 				<li className={classes.NavigationItem}>
-					<NavLink to="/matters" activeClassName={classes.active}>
-						Matters
-					</NavLink>
-				</li>
-				<li className={classes.NavigationItem}>
 					<NavLink to="/contacts" activeClassName={classes.active}>
 						Contacts
 					</NavLink>
 				</li>
+				<li className={classes.NavigationItem}>
+					<NavLink to="/matters" activeClassName={classes.active}>
+						Matters
+					</NavLink>
+				</li>
+
 				<li className={classes.NavigationItem}>
 					<NavLink to="/activities" activeClassName={classes.active}>
 						Activities

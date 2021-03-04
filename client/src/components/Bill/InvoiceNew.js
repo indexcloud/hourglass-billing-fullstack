@@ -168,8 +168,15 @@ class Invoice extends React.Component {
 			}
 		}
 
+		let today = new Date();
+		let dd = String(today.getDate()).padStart(2, "0");
+		let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+		let yyyy = today.getFullYear();
+
+		today = mm + "/" + dd + "/" + yyyy;
+
 		return (
-			<form style={{padding: 20}} onSubmit={this.invoiceHandler}>
+			<form style={{padding: 20, width: "50%"}} onSubmit={this.invoiceHandler}>
 				<Row>
 					<Col>
 						<Divider>Invoice</Divider>
@@ -184,20 +191,11 @@ class Invoice extends React.Component {
 						<div>Texas 77077</div>
 					</Col>
 					<Col span={8} offset={8}>
-						<table>
-							<tr>
-								<th>Invoice # :</th>
-								<td>1</td>
-							</tr>
-							<tr>
-								<th>Invoice Date :</th>
-								<td>10-01-2018</td>
-							</tr>
-							<tr>
-								<th>Due Date :</th>
-								<td>10-01-2018</td>
-							</tr>
-						</table>
+						<div style={{display: "flex", flexDirection: "column", textAlign: "left"}}>
+							<div>Invoice Number: 001</div>
+							<div>Invoice Date : {today}</div>
+							<div>Due upon receipt</div>
+						</div>
 					</Col>
 				</Row>
 
@@ -223,12 +221,9 @@ class Invoice extends React.Component {
 
 				<Row style={{marginTop: 48}}>
 					<Col span={8} offset={16}>
-						<table>
-							<tr>
-								<th>Bill Total :</th>
-								<td>$ {timeTotal}</td>
-							</tr>
-						</table>
+						<div>
+							<strong>Bill total: ${timeTotal}</strong>
+						</div>
 					</Col>
 				</Row>
 
