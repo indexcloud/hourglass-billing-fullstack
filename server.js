@@ -20,7 +20,7 @@ app.use(express.json()); // request body has been parsed
 app.use(express.urlencoded({extended: false})); // request body has been url encoded
 
 // Have Node serve the files for our built React app
-app.use(express.static(path.resolve(__dirname, "../client/build")));
+app.use(express.static(path.resolve(__dirname, "/client/build")));
 
 app.use(session({secret: "keyboard cat", resave: true, saveUninitialized: true}));
 app.use(passport.initialize());
