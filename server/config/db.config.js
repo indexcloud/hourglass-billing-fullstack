@@ -1,8 +1,8 @@
 module.exports = {
-	HOST: "127.0.0.1",
-	USER: "",
-	PASSWORD: "null",
-	DB: "hourglass-billing",
+	HOST: "isilo.db.elephantsql.com",
+	USER: "gjqxwhtp",
+	PASSWORD: "FIAgXtIIcvzs0DXsDZ40mGd0b0cgqS1e",
+	DB: "gjqxwhtp",
 	dialect: "postgres",
 	pool: {
 		max: 5,
